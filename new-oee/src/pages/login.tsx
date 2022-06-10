@@ -1,12 +1,12 @@
 import { FormHandles, SubmitHandler } from "@unform/core";
 import { useRef, useState } from "react";
 import * as Yup from 'yup';
-
+import { Form } from "@unform/web";
 import Code from '../assets/login/code.svg';
 import Mail from '../assets/login/mail.svg'
 import Password from '../assets/login/password.svg';
 import User from '../assets/login/user.svg';
-import { BodyLogin, ButtonLoginAndRegister, ContainerLogin, FlexDivLogin, FooterLogin, GridDivLogin, HeaderLogin, InputErrorMsg, InputLogin, InputLoginAnchor, InputLoginContainer, InputLoginContainerIcon, InputLoginIcon, MaxContainerLateralSpace, OptionLogin, OptionLoginSeparateText, OptionLoginText, PrincipalDivLogin, SubTitleRegisterLogin, SystemLogo, TitleRegisterLogin } from "../styles/style-login";
+import { BodyLogin, ButtonLoginAndRegister, ContainerLogin, FlexDivLogin, FooterLogin, GridDivLogin, HeaderLogin, InputErrorMsg, InputLogin, InputLoginAnchor, InputLoginContainer, InputLoginContainerIcon, InputLoginIcon, MaxContainerLateralSpace, NewUserRegister, OptionLogin, OptionLoginSeparateText, OptionLoginText, PrincipalDivLogin, SubTitleRegisterLogin, SystemLogo, TextForgotPassword, TextForgotPasswordInstruction, TitleRegisterLogin } from "../styles/style-login";
 
 export default function Login() {
 
@@ -15,7 +15,7 @@ export default function Login() {
 
     const formRef = useRef<FormHandles>(null);
 
-    const handleSubmit: SubmitHandler<FormData> = async data => {
+    const handleSubmitLoginUser: SubmitHandler<FormData> = async data => {
 
         try {
             const schema = Yup.object().shape({
@@ -45,6 +45,9 @@ export default function Login() {
     }
     function handleChangeFormThree() {
         setSelectFormToChange(3);
+    }
+    function handleChangeFormFour() {
+        setSelectFormToChange(4);
     }
 
 
@@ -108,6 +111,10 @@ export default function Login() {
                                 (
                                     <MaxContainerLateralSpace>
                                         <GridDivLogin form={selectFormToChange}>
+                                            <FlexDivLogin>
+                                                <SystemLogo form={selectFormToChange} />
+                                            </FlexDivLogin>
+
                                             <TitleRegisterLogin>
                                                 Crie sua conta
                                             </TitleRegisterLogin>
@@ -118,10 +125,24 @@ export default function Login() {
                                     </MaxContainerLateralSpace>
 
                                 ) :
-                                (
-                                    <>
-                                    </>
-                                )
+                                selectFormToChange === 4 ?
+                                    (
+                                        <MaxContainerLateralSpace>
+                                            <GridDivLogin form={selectFormToChange}>
+                                                <FlexDivLogin>
+                                                    <SystemLogo form={selectFormToChange} />
+                                                </FlexDivLogin>
+                                                <TextForgotPassword>
+                                                    Informe o e-mail cadastrado para solicitar a recuperação da senha
+                                                </TextForgotPassword>
+                                            </GridDivLogin>
+                                        </MaxContainerLateralSpace>
+
+                                    ) :
+                                    (
+                                        <>
+                                        </>
+                                    )
                     }
 
 
@@ -149,7 +170,7 @@ export default function Login() {
                                         </InputLoginContainerIcon>
                                         <InputLogin placeholder="SENHA" type={"password"} />
                                     </InputLoginContainer>
-                                    <InputLoginAnchor onClick={() => handleChangeFormThree()} form={selectFormToChange}>
+                                    <InputLoginAnchor onClick={() => handleChangeFormFour()} form={selectFormToChange}>
                                         Esqueci minha senha
                                     </InputLoginAnchor>
                                 </>
@@ -170,7 +191,7 @@ export default function Login() {
                                     selectFormToChange === 3 ?
                                         (
                                             <>
-                                                <InputErrorMsg active={false}>Código Incorreto</InputErrorMsg>
+                                                <InputErrorMsg active={false}>Informação</InputErrorMsg>
                                                 <InputLoginContainer top={0} active={false}>
                                                     <InputLoginContainerIcon>
                                                         <InputLoginIcon src={User} />
@@ -191,10 +212,25 @@ export default function Login() {
                                                 </InputLoginContainer>
                                             </>
                                         ) :
-                                        (
-                                            <>
-                                            </>
-                                        )
+                                        selectFormToChange === 4 ?
+                                            (
+                                                <>
+                                                    <InputErrorMsg active={false}>Informação</InputErrorMsg>
+                                                    <InputLoginContainer top={0} active={false}>
+                                                        <InputLoginContainerIcon>
+                                                            <InputLoginIcon src={Mail} />
+                                                        </InputLoginContainerIcon>
+                                                        <InputLogin placeholder="E-MAIL" type={"email"} />
+                                                    </InputLoginContainer>
+                                                    <TextForgotPasswordInstruction>
+                                                        Você recebá um e-mail no endereço informado contendo as instruções para redefinir a senha de acesso.
+                                                    </TextForgotPasswordInstruction>
+                                                </>
+                                            ) :
+                                            (
+                                                <>
+                                                </>
+                                            )
                         }
 
 
@@ -211,7 +247,14 @@ export default function Login() {
                             selectFormToChange === 1 ?
 
                                 (
-                                    <ButtonLoginAndRegister top={5}>ENTRAR</ButtonLoginAndRegister>
+                                    <>
+                                        <ButtonLoginAndRegister top={5}>ENTRAR</ButtonLoginAndRegister>
+                                        <FlexDivLogin>
+                                            <NewUserRegister active={false}>Novo usuário? &nbsp;</NewUserRegister>
+                                            <NewUserRegister active onClick={() => handleChangeFormThree()}>Cadastre-se</NewUserRegister>
+                                        </FlexDivLogin>
+                                    </>
+
                                 ) :
 
                                 selectFormToChange === 2 ?
@@ -222,7 +265,7 @@ export default function Login() {
                                         (
                                             <>
                                                 <GridDivLogin form={1}>
-                                                    <ButtonLoginAndRegister top={0}>ENTRAR</ButtonLoginAndRegister>
+                                                    <ButtonLoginAndRegister top={0}>CADASTRAR</ButtonLoginAndRegister>
                                                     <InputLoginAnchor onClick={() => handleChangeFormOne()} form={selectFormToChange}>
                                                         &lt; voltar
                                                     </InputLoginAnchor>
@@ -231,9 +274,22 @@ export default function Login() {
 
                                             </>
                                         ) :
-                                        (
-                                            <></>
-                                        )
+                                        selectFormToChange === 4 ?
+                                            (
+                                                <>
+                                                    <GridDivLogin form={1}>
+                                                        <ButtonLoginAndRegister top={0}>ENVIAR</ButtonLoginAndRegister>
+                                                        <InputLoginAnchor onClick={() => handleChangeFormOne()} form={selectFormToChange}>
+                                                            &lt; voltar
+                                                        </InputLoginAnchor>
+                                                    </GridDivLogin>
+
+
+                                                </>
+                                            ) :
+                                            (
+                                                <></>
+                                            )
 
                         }
 

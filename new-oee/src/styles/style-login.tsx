@@ -32,14 +32,16 @@ export const SystemLogo = styled(Logo) <FormControllI>`
     fill: #E66B25;
     margin-top: 1vh;
     width: 9vw;
+    display: ${(element: FormControllI) => element.form === 3 ? 'none' : element.form === 4 ? 'none' : 'block'};
 
     @media only screen and (max-width: 1000px) {
         width: 12vw;
 
     }
     @media only screen and (max-width: 600px) {
+        display: block;
         position: absolute;
-        margin-top: ${(element: FormControllI) => element.form === 1 ? '110vh' : '80vh'};
+        margin-top: ${(element: FormControllI) => element.form === 1 ? '110vh' : element.form === 2 ? '80vh' : element.form === 3 ? '115vh' : element.form === 4 && '110vh'};
         fill: #FFF;
         width: 25vw;
     }
@@ -50,7 +52,6 @@ export const SystemLogo = styled(Logo) <FormControllI>`
 
 
 export const PrincipalDivLogin = styled.div`
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -61,7 +62,6 @@ export const PrincipalDivLogin = styled.div`
     background-image: url(${Background});
     background-repeat: no-repeat;
     background-size: cover;
-    font-family: 'Montserrat', sans-serif;
 
     @media only screen and (max-width: 450px) {
         /* background-repeat: no-repeat;
@@ -75,7 +75,7 @@ export const PrincipalDivLogin = styled.div`
 export const ContainerLogin = styled.div<FormControllI>`
     position: relative;   
     width: 40vw;
-    height: ${(element: FormControllI) => element.form === 1 ? '60vh' : element.form === 2 ? '45vh' : element.form === 3 ? '60vh' : '60vh'};
+    height: ${(element: FormControllI) => element.form === 1 ? '60vh' : element.form === 2 ? '45vh' : element.form === 3 ? '60vh' : element.form === 4 ? '45vh' : element.form === 5 && '40vh'};
     border-radius: 15px;
     border: 1px solid lightgray;
     background-color: #FFF;
@@ -83,12 +83,12 @@ export const ContainerLogin = styled.div<FormControllI>`
 
     @media only screen and (max-width: 1000px) {
         width: 60vw;
-        height: ${(element: FormControllI) => element.form === 1 ? '45vh' : element.form === 2 ? '28vh' : element.form === 3 ? '45vh' : '45vh'};
+        height: ${(element: FormControllI) => element.form === 1 ? '50vh' : element.form === 2 ? '28vh' : element.form === 3 ? '45vh' : element.form === 4 ? '35vh' : element.form === 5 && '36vh'};
     }
 
     @media only screen and (max-width: 600px) {
         width: 80vw;
-        height: ${(element: FormControllI) => element.form === 1 ? '45vh' : element.form === 2 ? '25vh' : element.form === 3 ? '45vh' : '45vh'};
+        height: ${(element: FormControllI) => element.form === 1 ? '45vh' : element.form === 2 ? '25vh' : element.form === 3 ? '45vh' : element.form === 4 ? '38vh' : element.form === 2 && '25vh'};
     } 
 `
 
@@ -106,13 +106,13 @@ export const HeaderLogin = styled.div<FormControllI>`
     position: absolute;
     /* border: 1px solid lightblue; */
     width: 100%;
-    height: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '20vh' : element.form === 3 ? '16vh' : '20vh'};
+    height: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '20vh' : element.form === 3 ? '16vh' : element.form === 4 ? '15vh' : element.form === 5 && '10vh'};
 
     @media only screen and (max-width: 1000px) {
-        height: ${(element: FormControllI) => element.form === 1 ? '15vh' : element.form === 2 ? '15vh' : element.form === 3 ? '15vh' : '45vh'};
+        height: ${(element: FormControllI) => element.form === 1 ? '15vh' : element.form === 2 ? '15vh' : element.form === 3 ? '12vh' : element.form === 4 ? '10vh' : element.form === 5 && '8vh'};
     } 
     @media only screen and (max-width: 600px) {
-        height: ${(element: FormControllI) => element.form === 1 ? '10vh' : element.form === 2 ? '10vh' : element.form === 3 ? '10vh' : '45vh'};
+        height: ${(element: FormControllI) => element.form === 1 ? '10vh' : element.form === 2 ? '10vh' : element.form === 3 ? '10vh' : element.form === 4 && '10vh'};
     } 
 `
 
@@ -155,11 +155,15 @@ export const TitleRegisterLogin = styled.p`
     margin-top: 8vh;
     padding: 0;
     @media only screen and (max-width: 1000px) {
-
+        margin-top:3vh;
+        line-height: normal;
+        font-size: 3vh;
     } 
 
     @media only screen and (max-width: 600px) {
-      
+        margin-top:1vh;
+        line-height: normal;
+        font-size: 3vh;
     } 
 `
 
@@ -169,12 +173,52 @@ export const SubTitleRegisterLogin = styled.p`
     margin: 0;
     font-size: 3vh;
     @media only screen and (max-width: 1000px) {
-
+        margin-top: -3vh;
+        font-size: 2vh;
     } 
 
     @media only screen and (max-width: 600px) {
-    
+
+
+        font-size: 2vh;
     } 
+`
+
+export const NewUserRegister = styled.p<ActivedI>`
+    margin-top: 30%;
+    font-size: 1.5vh;
+    color: #E66B25;
+    font-weight: ${(element: ActivedI) => element.active ? 'bolder' : 'normal'};
+    text-decoration-line: ${(element: ActivedI) => element.active ? 'underline' : 'none'};
+    cursor:  ${(element: ActivedI) => element.active ? 'pointer' : 'text'};
+
+    @media only screen and (max-width: 1000px) {
+        margin-top: 50%;
+    } 
+    @media only screen and (max-width: 600px) {
+        font-size: 1.2vh;
+    } 
+`
+export const TextForgotPassword = styled.p`
+    margin-top: 5vh;
+    font-size: 2.5vh;
+    color: #E66B25;
+    font-weight: bolder;
+
+
+    @media only screen and (max-width: 1000px) {
+        margin-top: 3vh;
+        font-size: 1.8vh;
+    } 
+    @media only screen and (max-width: 600px) {
+       
+    } 
+`
+export const TextForgotPasswordInstruction = styled.p`
+    margin-top: 8vh;
+    position: relative;
+    font-size: 1.2vh;
+    color: #878A8C;
 `
 
 export const OptionLogin = styled.div<OptionSelectedLoginI>`
@@ -222,17 +266,17 @@ export const OptionLoginSeparateText = styled.div`
 //BODY
 export const BodyLogin = styled.div<FormControllI>`
     /* border: 1px solid red; */
-    margin-top: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '20vh' : element.form === 3 ? '16vh' : '20vh'};
-    height: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '10vh' : element.form === 3 ? '28vh' : '20vh'};
+    margin-top: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '20vh' : element.form === 3 ? '16vh' : element.form === 4 ? '15vh' : element.form === 5 && '10vh'};
+    height: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '10vh' : element.form === 3 ? '28vh' : element.form === 4 ? '15vh' : element.form === 5 && '20vh'};
 
     @media only screen and (max-width: 1000px) {
-        margin-top: 15vh;
-        height: ${(element: FormControllI) => element.form === 1 ? '15vh' : element.form === 2 ? '7vh' : element.form === 3 ? '15vh' : '15vh'};
+        margin-top: ${(element: FormControllI) => element.form === 1 ? '15vh' : element.form === 2 ? '15vh' : element.form === 3 ? '12vh' : element.form === 4 ? '10vh' : element.form === 5 && '8vh'};
+        height: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '7vh' : element.form === 3 ? '24vh' : element.form === 4 ? '15vh' : element.form === 5 && '18vh'};
     } 
 
     @media only screen and (max-width: 600px) {
-        margin-top: 10vh;
-        height: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '7vh' : element.form === 3 ? '20vh' : '15vh'};
+        margin-top: ${(element: FormControllI) => element.form === 1 ? '10vh' : element.form === 2 ? '10vh' : element.form === 3 ? '10vh' : element.form === 4 && '10vh'};
+        height: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '7vh' : element.form === 3 ? '23vh' : element.form === 4 && '18vh'};
     
     } 
 `
@@ -276,10 +320,23 @@ export const InputLoginContainerIcon = styled.div`
     /* background-color: lightcyan; */
 `
 export const InputLoginIcon = styled.img`
-    height: 70%;
+    height: 1.2vw;
+    width: 1.2vw;
+
+
+    @media only screen and (max-width: 1000px) {
+        height: 2.5vw;
+        width: 2.5vw;
+    } 
+
+    @media only screen and (max-width: 600px) {
+        height: 3.2vw;
+        width: 3.2vw;
+    }
+
 `
 export const InputLogin = styled.input` /* O input do HTML */
-    height: 3.9vh;
+    height: 3.7vh;
     border-radius: 8px;
     width: 100%;
     padding-left: 1vw;
@@ -300,10 +357,10 @@ export const InputLogin = styled.input` /* O input do HTML */
 
 export const InputLoginAnchor = styled.a<FormControllI>`/* o "Esqueci minha senha" */
     position: absolute;
-    margin-top: ${(element: FormControllI) => element.form === 3 ? '15' : '15'}vh;
+    margin-top: ${(element: FormControllI) => element.form === 3 ? '14' : '14'}vh;
     color: #878A8C;
     font-size: 1vw;
-    margin-left: ${(element: FormControllI) => element.form === 3 ? '45%' : '0'};
+    margin-left: ${(element: FormControllI) => element.form === 3 ? '42%' : element.form === 4 ? '42%' : '0'};
 
     text-decoration-line: underline;
     cursor: pointer;
@@ -314,10 +371,10 @@ export const InputLoginAnchor = styled.a<FormControllI>`/* o "Esqueci minha senh
 }
 
 @media only screen and (max-width: 1000px) {
-    font-size: 1.8vw;
+    font-size: 2vw;
    }
    @media only screen and (max-width: 600px) {
-    font-size: 2.5vw;
+    font-size: 3vw;
    } 
 `
 
@@ -331,13 +388,13 @@ export const InputLoginAnchor = styled.a<FormControllI>`/* o "Esqueci minha senh
 //FOOTER
 export const FooterLogin = styled.div<FormControllI>`
     /* border: 1px solid green; */
-    height: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '15vh' : element.form === 3 ? '16vh' : '20vh'};
+    height: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '15vh' : element.form === 3 ? '16vh' : element.form === 4 ? '15vh' : element.form === 5 && '10vh'};
     @media only screen and (max-width: 1000px) {
        
-        height: ${(element: FormControllI) => element.form === 1 ? '15vh' : element.form === 2 ? '6vh' : element.form === 3 ? '15vh' : '45vh'};
+        height: ${(element: FormControllI) => element.form === 1 ? '15vh' : element.form === 2 ? '6vh' : element.form === 3 ? '9vh' : element.form === 4 ? '10vh' : element.form === 5 && '10vh'};
     }
     @media only screen and (max-width: 600px) {
-        height: ${(element: FormControllI) => element.form === 1 ? '15vh' : element.form === 2 ? '8vh' : element.form === 3 ? '15vh' : '45vh'};
+        height: ${(element: FormControllI) => element.form === 1 ? '15vh' : element.form === 2 ? '8vh' : element.form === 3 ? '12vh' : element.form === 4 && '10vh'};
     } 
 `
 
@@ -354,16 +411,3 @@ export const ButtonLoginAndRegister = styled.button<DivControllI>`
     cursor: pointer;
 
 `
-
-
-
-
-
-
-/* export const HeaderLoginText = styled.p<TextControllI>`
-    font-size: ${(element: TextControllI) => element.size}vh;
-    color: #E66B25;
-    font-weight: ${(element: TextControllI) => element.bolder === true && 'bolder'};
-    height: 5vh;
-    line-height:  ${(element: TextControllI) => element.lHeight}%;
-` */

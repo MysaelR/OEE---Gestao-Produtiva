@@ -1,48 +1,19 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 
 import Login from "../pages/login";
+import RedefineKey from "../pages/redefine-key";
 
 export const Router = () => {
     { console.log(window.location.href) }
 
     return (
         <BrowserRouter>
-
-            {window.location.href === 'http://localhost:3000/' ?
-
-                (<Routes>
-                    <Route path="/" element={<Login />} />
-                </Routes>) :
-
-                (<> {/* <Menu />
-                    <Routes>
-                        <Route path="/home" element={<Home />} />
-
-                        <Route path="medicines">
-                            <Route
-                                index
-                                element={<Medicines />}
-                            />
-                            <Route
-                                path="add"
-                                element={<AddMedicines />}
-                            />
-                            <Route
-                                path="show"
-                                element={<ShowMedicines />}
-                            />
-
-
-                        </Route>
-
-                        <Route path="/files" element={<Files />} />
-                    </Routes> */}</>)
-
-
-
-
-            }
-
+            <Routes>
+                <Route path="/">
+                    <Route index element={<Login />} />
+                    <Route path="redefine" element={<RedefineKey />} />
+                </Route>
+            </Routes>
 
         </BrowserRouter>
     );
