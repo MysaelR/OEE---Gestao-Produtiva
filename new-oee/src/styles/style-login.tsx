@@ -75,6 +75,8 @@ export const PrincipalDivLogin = styled.div`
 export const ContainerLogin = styled.div<FormControllI>`
     position: relative;   
     width: 40vw;
+    min-height: 280px;
+    min-width: 250px;
     height: ${(element: FormControllI) => element.form === 1 ? '60vh' : element.form === 2 ? '45vh' : element.form === 3 ? '60vh' : element.form === 4 ? '45vh' : element.form === 5 && '40vh'};
     border-radius: 15px;
     border: 1px solid lightgray;
@@ -83,7 +85,7 @@ export const ContainerLogin = styled.div<FormControllI>`
 
     @media only screen and (max-width: 1000px) {
         width: 60vw;
-        height: ${(element: FormControllI) => element.form === 1 ? '50vh' : element.form === 2 ? '28vh' : element.form === 3 ? '45vh' : element.form === 4 ? '35vh' : element.form === 5 && '36vh'};
+        height: ${(element: FormControllI) => element.form === 1 ? '50vh' : element.form === 2 ? '30vh' : element.form === 3 ? '45vh' : element.form === 4 ? '35vh' : element.form === 5 && '36vh'};
     }
 
     @media only screen and (max-width: 600px) {
@@ -98,7 +100,6 @@ export const MaxContainerLateralSpace = styled.div`
     width: 80%;
     height: 100%;
     /* border: 1px solid black; */
-
 `
 
 //HEADER
@@ -106,6 +107,8 @@ export const HeaderLogin = styled.div<FormControllI>`
     position: absolute;
     /* border: 1px solid lightblue; */
     width: 100%;
+    min-height: 60px;
+
     height: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '20vh' : element.form === 3 ? '16vh' : element.form === 4 ? '15vh' : element.form === 5 && '10vh'};
 
     @media only screen and (max-width: 1000px) {
@@ -120,7 +123,6 @@ export const GridDivLogin = styled.div<FormControllI>`
     display: grid;
     align-items: center;
     justify-content: ${(element: FormControllI) => (element.form === 3 ? "start" : "center")};
-
 `
 
 export const FlexDivLogin = styled.div<DivControllI>`
@@ -165,6 +167,9 @@ export const TitleRegisterLogin = styled.p`
         line-height: normal;
         font-size: 3vh;
     } 
+    @media only screen and (max-height: 420px) {
+        font-size: 8vh;
+    }
 `
 
 export const SubTitleRegisterLogin = styled.p`
@@ -182,10 +187,13 @@ export const SubTitleRegisterLogin = styled.p`
 
         font-size: 2vh;
     } 
+    @media only screen and (max-height: 420px) {
+        font-size: 7vh;
+    }
 `
 
-export const NewUserRegister = styled.p<ActivedI>`
-    margin-top: 30%;
+export const NewUserRegister = styled.p<ActivedI & FormControllI>`
+    margin-top: 20vh;
     font-size: 1.5vh;
     color: #E66B25;
     font-weight: ${(element: ActivedI) => element.active ? 'bolder' : 'normal'};
@@ -193,11 +201,22 @@ export const NewUserRegister = styled.p<ActivedI>`
     cursor:  ${(element: ActivedI) => element.active ? 'pointer' : 'text'};
 
     @media only screen and (max-width: 1000px) {
-        margin-top: 50%;
+        margin-top: 19vh;
     } 
     @media only screen and (max-width: 600px) {
         font-size: 1.2vh;
     } 
+
+    @media only screen and (max-height: 500px) {
+        margin-top: 20vh;
+        font-size: 2vh;
+        
+    }
+    @media only screen and (max-height: 420px) {
+        margin-top: ${(element: FormControllI) => element.form === 1 ? '20%' : element.form === 2 ? '90px' : element.form === 3 ? '40%' : element.form === 4 && '90px'};
+        font-size: 3vh;
+        
+    }
 `
 export const TextForgotPassword = styled.p`
     margin-top: 5vh;
@@ -215,7 +234,7 @@ export const TextForgotPassword = styled.p`
     } 
 `
 export const TextForgotPasswordInstruction = styled.p`
-    margin-top: 8vh;
+
     position: relative;
     font-size: 1.2vh;
     color: #878A8C;
@@ -253,6 +272,12 @@ export const OptionLoginText = styled.p<OptionSelectedLoginI>`
     border-spacing: 15px;
     font-size: 2.2vh;
 
+    @media only screen and (max-height: 420px) {
+        border-width: 2px;
+        font-size: 4vh;
+        
+    }
+
 `
 
 export const OptionLoginSeparateText = styled.div`
@@ -266,6 +291,7 @@ export const OptionLoginSeparateText = styled.div`
 //BODY
 export const BodyLogin = styled.div<FormControllI>`
     /* border: 1px solid red; */
+    min-height: 110px;
     margin-top: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '20vh' : element.form === 3 ? '16vh' : element.form === 4 ? '15vh' : element.form === 5 && '10vh'};
     height: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '10vh' : element.form === 3 ? '28vh' : element.form === 4 ? '15vh' : element.form === 5 && '20vh'};
 
@@ -277,7 +303,9 @@ export const BodyLogin = styled.div<FormControllI>`
     @media only screen and (max-width: 600px) {
         margin-top: ${(element: FormControllI) => element.form === 1 ? '10vh' : element.form === 2 ? '10vh' : element.form === 3 ? '10vh' : element.form === 4 && '10vh'};
         height: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '7vh' : element.form === 3 ? '23vh' : element.form === 4 && '18vh'};
-    
+    }
+    @media only screen and (max-height: 420px) {
+        margin-top: ${(element: FormControllI) => element.form === 1 ? '100px' : element.form === 2 ? '90px' : element.form === 3 ? '70px' : element.form === 4 && '90px'};
     } 
 `
 
@@ -285,6 +313,7 @@ export const InputErrorMsg = styled.p<ActivedI>`
     visibility: ${(element: ActivedI) => element.active ? 'visible' : 'hidden'};
     color: #C02B2B;
     font-size: 1.5vh;
+    line-height:0;
 
     @media only screen and (max-width: 1000px) {
         font-size: 1.2vh;
@@ -295,18 +324,32 @@ export const InputErrorMsg = styled.p<ActivedI>`
     } 
 
 `
+export const InputLoginAndErrorContainer = styled.div<DivControllI>`
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+
+    margin-top: ${(element: DivControllI) => element.top}vh;
+`
 
 export const InputLoginContainer = styled.div<DivControllI & ActivedI>`
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     align-items: center;
-
+    margin: 0;
+    padding: 0;
     width: 99%;
     border: 0.3vh solid;
     border-color: ${(element: ActivedI) => element.active ? '#C02B2B' : '#C7C7C7'};
     border-radius: 8px;
     height: 4vh;
-    margin-top: ${(element: DivControllI) => element.top}vh;
+    /* margin-top: ${(element: DivControllI) => element.top}vh; */
+    @media only screen and (max-height: 420px) {
+        margin-top: 5px;
+        height: 8vh;
+        
+    }
 
 `
 export const InputLoginContainerIcon = styled.div`
@@ -322,6 +365,8 @@ export const InputLoginContainerIcon = styled.div`
 export const InputLoginIcon = styled.img`
     height: 1.2vw;
     width: 1.2vw;
+    min-width: 1.2vw;
+    min-height: 1.2vw;
 
 
     @media only screen and (max-width: 1000px) {
@@ -332,6 +377,11 @@ export const InputLoginIcon = styled.img`
     @media only screen and (max-width: 600px) {
         height: 3.2vw;
         width: 3.2vw;
+    }
+
+    @media only screen and (max-height: 420px) {
+        height: 2vw;
+        width: 2vw;
     }
 
 `
@@ -347,11 +397,29 @@ export const InputLogin = styled.input` /* O input do HTML */
     ::placeholder{
         color: #878A8C;
         font-size: 1.5vh;
+        @media only screen and (max-height: 420px) {
+
+            font-size: 2.5vh;
+        }
     }
 
     :focus{
         box-shadow: 0;
         outline: 0;
+    }
+`
+export const ForgotPassword = styled.a`
+    color: #878A8C;
+    cursor: pointer;
+    position: absolute;
+    margin-top: 1vh;
+    z-index: 1;
+    text-decoration: underline;
+    font-size: 1.2vh;
+
+    @media only screen and (max-height: 420px) {
+        font-size: 3vh;
+        
     }
 `
 
@@ -376,6 +444,10 @@ export const InputLoginAnchor = styled.a<FormControllI>`/* o "Esqueci minha senh
    @media only screen and (max-width: 600px) {
     font-size: 3vw;
    } 
+
+   @media only screen and (max-height: 420px) {
+    margin-top: ${(element: FormControllI) => element.form === 1 ? '' : element.form === 2 ? '90px' : element.form === 3 ? '40%' : element.form === 4 && '90px'};
+   } 
 `
 
 
@@ -388,14 +460,19 @@ export const InputLoginAnchor = styled.a<FormControllI>`/* o "Esqueci minha senh
 //FOOTER
 export const FooterLogin = styled.div<FormControllI>`
     /* border: 1px solid green; */
+    min-height: 60px;
     height: ${(element: FormControllI) => element.form === 1 ? '20vh' : element.form === 2 ? '15vh' : element.form === 3 ? '16vh' : element.form === 4 ? '15vh' : element.form === 5 && '10vh'};
     @media only screen and (max-width: 1000px) {
        
-        height: ${(element: FormControllI) => element.form === 1 ? '15vh' : element.form === 2 ? '6vh' : element.form === 3 ? '9vh' : element.form === 4 ? '10vh' : element.form === 5 && '10vh'};
+        height: ${(element: FormControllI) => element.form === 1 ? '15vh' : element.form === 2 ? '8vh' : element.form === 3 ? '9vh' : element.form === 4 ? '10vh' : element.form === 5 && '10vh'};
     }
     @media only screen and (max-width: 600px) {
         height: ${(element: FormControllI) => element.form === 1 ? '15vh' : element.form === 2 ? '8vh' : element.form === 3 ? '12vh' : element.form === 4 && '10vh'};
     } 
+    @media only screen and (max-height: 420px) {
+        
+    }
+
 `
 
 export const ButtonLoginAndRegister = styled.button<DivControllI>`
@@ -409,5 +486,13 @@ export const ButtonLoginAndRegister = styled.button<DivControllI>`
     border-radius: 8px;
     font-size: 2vh;
     cursor: pointer;
+
+
+    @media only screen and (max-height: 420px) {
+        min-height: 20px;
+        font-size: 4vh;
+        margin-top: ${(element: DivControllI) => element.w === 1 ? '0vh' : element.w === 2 ? '0vh' : element.w === 3 ? '10vh' : element.w === 4 && '0vh'};
+    }
+    
 
 `
