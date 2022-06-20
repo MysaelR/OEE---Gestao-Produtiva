@@ -8,6 +8,7 @@ import Code from '../assets/login/code.svg';
 import Mail from '../assets/login/mail.svg'
 import Password from '../assets/login/password.svg';
 import User from '../assets/login/user.svg';
+import { PasswordInputLogin } from "../components/inputs/login/password";
 import { TextInputLogin } from "../components/inputs/login/text";
 import { BodyLogin, ButtonLoginAndRegister, ContainerLogin, FlexDivLogin, FooterLogin, ForgotPassword, GridDivLogin, HeaderLogin, InputErrorMsg, InputLogin, InputLoginAnchor, InputLoginContainer, InputLoginContainerIcon, InputLoginIcon, MaxContainerLateralSpace, NewUserRegister, OptionLogin, OptionLoginSeparateText, OptionLoginText, PrincipalDivLogin, SubTitleRegisterLogin, SystemLogo, TextForgotPassword, TextForgotPasswordInstruction, TitleRegisterLogin } from "../styles/style-login";
 
@@ -242,13 +243,14 @@ export default function Login() {
                                         <SystemLogo form={selectFormToChange} />
                                     </FlexDivLogin>
 
-                                    <TitleRegisterLogin>
-                                        Crie sua conta
-                                    </TitleRegisterLogin>
-                                    <SubTitleRegisterLogin>
-                                        Preencha com seus dados
-                                    </SubTitleRegisterLogin>
+
                                 </GridDivLogin>
+                                <TitleRegisterLogin>
+                                    Crie sua conta
+                                </TitleRegisterLogin>
+                                <SubTitleRegisterLogin>
+                                    Preencha com seus dados
+                                </SubTitleRegisterLogin>
                             </MaxContainerLateralSpace>
 
                         )
@@ -287,14 +289,11 @@ export default function Login() {
 
                                     <Form ref={formRef} onSubmit={handleSubmitLoginUser}>
                                         <TextInputLogin name='user' errorMsg="" icon={User} placeHolder="USUÁRIO" top={0} type="text" />
-                                        <TextInputLogin name='password' errorMsg="" icon={Password} placeHolder="SENHA" top={2} type="text" />
+                                        <PasswordInputLogin name='password' errorMsg="" placeHolder="SENHA" top={0} onSubmit={() => formRef.current?.submitForm()} />
                                         <ForgotPassword onClick={() => handleChangeFormFour()}>
                                             Esqueci minha senha
                                         </ForgotPassword>
-
                                     </Form>
-
-
 
 
                                 </>
@@ -341,7 +340,8 @@ export default function Login() {
                                     <Form ref={formRef} onSubmit={handleSubmitRegisterUser}>
                                         <TextInputLogin name='user_name' errorMsg="" icon={User} placeHolder="NOME" top={0} type="text" />
                                         <TextInputLogin name='email' errorMsg="" icon={Mail} placeHolder="E-MAIL" top={0} type="text" />
-                                        <TextInputLogin name='password' errorMsg="" icon={Password} placeHolder="SENHA" top={0} type="text" />
+                                        {/* <TextInputLogin name='password' errorMsg="" icon={Password} placeHolder="SENHA" top={0} type="text" /> */}
+                                        <PasswordInputLogin name='password' errorMsg="" placeHolder="SENHA" top={0} />
                                     </Form>
 
                                 </>
@@ -386,7 +386,7 @@ export default function Login() {
 
                             (
                                 <>
-                                    <ButtonLoginAndRegister top={5} onClick={() => { formRef.current?.submitForm() }} w={1}>ENTRAR</ButtonLoginAndRegister>
+                                    <ButtonLoginAndRegister top={5} onClick={() => { formRef.current?.submitForm() }} w={1}>Entrar</ButtonLoginAndRegister>
                                     <FlexDivLogin>
                                         <NewUserRegister form={1} active={false}>Novo usuário? &nbsp;</NewUserRegister>
                                         <NewUserRegister form={1} active onClick={() => handleChangeFormThree()}>Cadastre-se</NewUserRegister>
@@ -397,13 +397,13 @@ export default function Login() {
 
                         {selectFormToChange === 2 &&
                             (
-                                <ButtonLoginAndRegister top={2} onClick={() => { formRef.current?.submitForm() }} w={2}>ENTRAR</ButtonLoginAndRegister>
+                                <ButtonLoginAndRegister top={2} onClick={() => { formRef.current?.submitForm() }} w={2}>Entrar</ButtonLoginAndRegister>
                             )}
                         {selectFormToChange === 3 &&
                             (
                                 <>
                                     <GridDivLogin form={1}>
-                                        <ButtonLoginAndRegister top={1} onClick={() => { formRef.current?.submitForm() }} w={3}>CADASTRAR</ButtonLoginAndRegister>
+                                        <ButtonLoginAndRegister top={1} onClick={() => { formRef.current?.submitForm() }} w={3}>Cadastrar</ButtonLoginAndRegister>
                                         <InputLoginAnchor onClick={() => handleChangeFormOne()} form={selectFormToChange}>
                                             &lt; voltar
                                         </InputLoginAnchor>
@@ -416,7 +416,7 @@ export default function Login() {
                             (
                                 <>
                                     <GridDivLogin form={1}>
-                                        <ButtonLoginAndRegister top={0} onClick={() => { formRef.current?.submitForm() }} w={4}>ENVIAR</ButtonLoginAndRegister>
+                                        <ButtonLoginAndRegister top={0} onClick={() => { formRef.current?.submitForm() }} w={4}>Enviar</ButtonLoginAndRegister>
                                         <InputLoginAnchor onClick={() => handleChangeFormOne()} form={selectFormToChange}>
                                             &lt; voltar
                                         </InputLoginAnchor>

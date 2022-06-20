@@ -1,48 +1,24 @@
 import { useField } from "@unform/core";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { InputErrorMsg, InputLogin, InputLoginAndErrorContainer, InputLoginContainer, InputLoginContainerIcon, InputLoginIcon } from "../../../styles/style-login";
+import VisibilityOff from '../../../assets/login/visibility_off.svg'
+import Visibility from '../../../assets/login/visibility_on.svg'
+import { InputErrorMsg, InputLoginAndErrorContainer, InputLoginContainer, InputLoginContainerIcon, InputLoginIcon, InputPasswordLogin } from "../../../styles/style-login";
 
-interface TextInputLoginI {
+interface PasswordInputLoginI {
     name: string
     label?: string
     top: number
     errorMsg: string
-    icon: string
-    type: string
     placeHolder: string
     onSubmit?: () => void;
 }
 
-/* 
-type InputProps = JSX.IntrinsicElements['input'] & TextInputLoginI
-
-const inputRef = useRef<HTMLInputElement>(null)
-const { fieldName, defaultValue, registerField, error } = useField(name) 
-useEffect(() => {
-    registerField({
-        name: fieldName,
-        ref: inputRef,
-        getValue: ref => {
-            return ref.current.value
-        },
-        setValue: (ref, value) => {
-            ref.current.value = value
-        },
-        clearValue: ref => {
-            ref.current.value = ''
-        },
-    })
-}, [fieldName, registerField])
 
 
-*/
+export const PasswordInputLogin: React.FC<PasswordInputLoginI> = ({ name, label, top, errorMsg, placeHolder, onSubmit, ...rest }) => {
 
-
-
-
-export const TextInputLogin: React.FC<TextInputLoginI> = ({ name, label, top, errorMsg, icon, type, placeHolder, onSubmit, ...rest }) => {
-
+    const [visible, setVisible] = useState(false);
 
     const inputRef = useRef<HTMLInputElement>(null)
 
@@ -65,6 +41,7 @@ export const TextInputLogin: React.FC<TextInputLoginI> = ({ name, label, top, er
     }, [fieldName, registerField])
 
 
+
     return (
         <>
             <InputLoginAndErrorContainer>
@@ -74,16 +51,12 @@ export const TextInputLogin: React.FC<TextInputLoginI> = ({ name, label, top, er
                 <InputErrorMsg active>{error}</InputErrorMsg>
                 <InputLoginContainer top={top} active={!!error}>
 
-
                     <InputLoginContainerIcon>
-                        <InputLoginIcon src={icon} active={false} />
+                        <InputLoginIcon src={visible ? Visibility : VisibilityOff} onClick={() => setVisible(!visible)} active />
                     </InputLoginContainerIcon>
-                    <InputLogin ref={inputRef} id={fieldName} defaultValue={defaultValue} placeholder={placeHolder} type={type} onSubmit={onSubmit} />
-
+                    <InputPasswordLogin ref={inputRef} id={fieldName} defaultValue={defaultValue} placeholder={placeHolder} type={visible ? 'text' : 'password'} onSubmit={onSubmit} />
                 </InputLoginContainer>
             </InputLoginAndErrorContainer>
-
-
         </>
-    );
+    )
 }

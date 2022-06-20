@@ -41,7 +41,7 @@ export const SystemLogo = styled(Logo) <FormControllI>`
     @media only screen and (max-width: 600px) {
         display: block;
         position: absolute;
-        margin-top: ${(element: FormControllI) => element.form === 1 ? '110vh' : element.form === 2 ? '80vh' : element.form === 3 ? '115vh' : element.form === 4 && '110vh'};
+        margin-top: ${(element: FormControllI) => element.form === 1 ? '110vh' : element.form === 2 ? '100vh' : element.form === 3 ? '115vh' : element.form === 4 && '110vh'};
         fill: #FFF;
         width: 25vw;
     }
@@ -122,7 +122,8 @@ export const HeaderLogin = styled.div<FormControllI>`
 export const GridDivLogin = styled.div<FormControllI>`
     display: grid;
     align-items: center;
-    justify-content: ${(element: FormControllI) => (element.form === 3 ? "start" : "center")};
+    justify-content: center;
+   
 `
 
 export const FlexDivLogin = styled.div<DivControllI>`
@@ -174,7 +175,7 @@ export const TitleRegisterLogin = styled.p`
 
 export const SubTitleRegisterLogin = styled.p`
     color: #E66B25;
-    line-height: 0;
+    line-height: 1;
     margin: 0;
     font-size: 3vh;
     @media only screen and (max-width: 1000px) {
@@ -362,11 +363,13 @@ export const InputLoginContainerIcon = styled.div`
     border-right: 0.1vh solid #C7C7C7;
     /* background-color: lightcyan; */
 `
-export const InputLoginIcon = styled.img`
+export const InputLoginIcon = styled.img<ActivedI>`
     height: 1.2vw;
     width: 1.2vw;
     min-width: 1.2vw;
     min-height: 1.2vw;
+
+    cursor: ${(element: ActivedI) => element.active && 'pointer'};
 
 
     @media only screen and (max-width: 1000px) {
@@ -408,6 +411,30 @@ export const InputLogin = styled.input` /* O input do HTML */
         outline: 0;
     }
 `
+export const InputPasswordLogin = styled.input`
+    height: 3.7vh;
+    border-radius: 8px;
+    width: 100%;
+    padding-left: 1vw;
+    font-size: 1.8vh;
+
+    border: none;
+
+    ::placeholder{
+        color: #878A8C;
+        font-size: 1.5vh;
+        @media only screen and (max-height: 420px) {
+
+            font-size: 2.5vh;
+        }
+    }
+
+    :focus{
+        box-shadow: 0;
+        outline: 0;
+    }
+`
+
 export const ForgotPassword = styled.a`
     color: #878A8C;
     cursor: pointer;
@@ -478,13 +505,16 @@ export const FooterLogin = styled.div<FormControllI>`
 export const ButtonLoginAndRegister = styled.button<DivControllI>`
     position: absolute;
     top: ${(element: DivControllI) => element.top}vh;
+    font-family: 'Montserrat';
     background-color: #E66B25;
     width: 100%;
     padding: 1vh;
     border: none;
     color: white;
     border-radius: 8px;
-    font-size: 2vh;
+    font-size: 1.8vh;
+    min-height: 4vh;
+    max-height: 4vh;
     cursor: pointer;
 
 
