@@ -74,12 +74,10 @@ export const TextInputLogin: React.FC<TextInputLoginI> = ({ name, label, top, er
                 <InputErrorMsg active>{error}</InputErrorMsg>
                 <InputLoginContainer top={top} active={!!error}>
 
-
                     <InputLoginContainerIcon>
                         <InputLoginIcon src={icon} active={false} />
                     </InputLoginContainerIcon>
                     <InputLogin ref={inputRef} id={fieldName} defaultValue={defaultValue} placeholder={placeHolder} type={type} onSubmit={onSubmit} />
-
                 </InputLoginContainer>
             </InputLoginAndErrorContainer>
 
