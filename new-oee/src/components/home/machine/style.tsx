@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
-import { useWindowSize } from "../../../utils/useWindowSize";
 
+import { useWindowSize } from "../../../utils/useWindowSize";
 
 function useSize() {
     const size = useWindowSize();
@@ -13,10 +13,10 @@ interface WindowsSize {
     height: number
 }
 
+//TAMANHO DAS MAQUINAS
+
 export const LargerMachineContainer = styled.div<WindowsSize>`
-
-
-
+    position: relative;
     border: 1px solid #1C8A55;
     min-width: 299px;
     min-height: 229px;
@@ -51,6 +51,7 @@ export const LargerMachineContainer = styled.div<WindowsSize>`
 `
 
 export const MediumMachineContainer = styled.div<WindowsSize>`
+position: relative;
     border: 1px solid blue;
     min-width: 215px;
     min-height: 245px;
@@ -83,7 +84,7 @@ export const MediumMachineContainer = styled.div<WindowsSize>`
 
 
 export const SmallMachineContainer = styled.div<WindowsSize>`
-
+position: relative;
     border: 1px solid red;
     min-width: 98px;
     max-width: 196px;
@@ -108,12 +109,41 @@ export const SmallMachineContainer = styled.div<WindowsSize>`
         height: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 3) * 147}px;
     }
 
-    
     @media only screen and (max-width: 900px) and (max-height: 450px) {
         width: 98px;
         height: 147px;
     }
 
-
-
 `
+
+
+export const HeaderLarger = styled.div`
+    position: relative;
+    width: 100%;
+    height: 40%;
+
+    background-color: lightsalmon;
+`
+
+export const BodyLarger = styled.div`
+   position: relative;
+    width: 100%;
+    height: 60%;
+    background-color: lightgray;
+`
+
+
+//RADIAL BAR to Larger
+
+export const RadialBarContainerGlobal = styled.div`
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+    width: 50%;
+    height: 100%;
+    bottom: 0;
+    z-index: 1;
+`
+
