@@ -1,8 +1,8 @@
+import InternalRadialBarOne from "./internalRadialBar";
 import { useEffect, useState } from "react";
 import { Background, VictoryAnimation, VictoryLabel, VictoryPie } from 'victory';
 
 import { RadialBarContainerGlobal } from "../../home/machine/style";
-import InternalRadialBarOne from "./internalRadialBar";
 
 interface RadialBarOneI {
     percent: number,
