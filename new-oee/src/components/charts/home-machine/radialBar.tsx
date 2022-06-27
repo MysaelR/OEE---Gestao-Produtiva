@@ -7,11 +7,12 @@ import { RadialBarContainerGlobal } from "../../home/machine/style";
 interface RadialBarOneI {
     percent: number,
     value_to_alert_low: number,
-    value_to_alert_high: number
+    value_to_alert_high: number,
+    smallSize: boolean
 }
 
 
-const RadialBarOne: React.FC<RadialBarOneI> = ({ percent, value_to_alert_low, value_to_alert_high }) => {
+const RadialBarOne: React.FC<RadialBarOneI> = ({ percent, value_to_alert_low, value_to_alert_high, smallSize }) => {
 
 
     function getData(percent: number) {
@@ -23,8 +24,9 @@ const RadialBarOne: React.FC<RadialBarOneI> = ({ percent, value_to_alert_low, va
     const [color, setColor] = useState('');
 
     useEffect(() => {
-        setState({ percent: percent, data: getData(percent) });
 
+        //setState({ percent: percent, data: getData(percent) });
+        setState({ percent: percent, data: [{ x: 1, y: percent }, { x: 100, y: 100 - percent }] });
         if (percent <= value_to_alert_low) {
             setColor("#C02B2B");
         }
@@ -35,7 +37,7 @@ const RadialBarOne: React.FC<RadialBarOneI> = ({ percent, value_to_alert_low, va
         }
     }, [percent]);
 
-    const data2 = { x: 100, y: 100 }
+
 
     return (
 
@@ -54,10 +56,13 @@ const RadialBarOne: React.FC<RadialBarOneI> = ({ percent, value_to_alert_low, va
                     style={{
 
                         data: {
-                            fill: 'lightgray'
+                            fill: 'lightgray',
                         }
+
                     }}
                 />
+
+
                 <VictoryPie
                     standalone={false}
                     animate={{ duration: 1000 }}
@@ -75,13 +80,17 @@ const RadialBarOne: React.FC<RadialBarOneI> = ({ percent, value_to_alert_low, va
                                 // const color = datum.y > 35 ? "#FEB526" : datum.y > 70 ? "#1C8A55" : "#C02B2B";
                                 return datum.x === 1 ? color : "transparent";
                             },
+                            fontSize: () => { return 1 },
                             backgroundColor: '#E5E5E5'
 
 
 
-                        }
-                    }}
+                        },
+
+                    }
+                    }
                 />
+
                 {/*                 <VictoryLabel
                     textAnchor="middle" verticalAnchor="middle"
 
@@ -98,7 +107,7 @@ const RadialBarOne: React.FC<RadialBarOneI> = ({ percent, value_to_alert_low, va
 
             </svg>
 
-            <InternalRadialBarOne percent={percent} color={color} />
+            <InternalRadialBarOne percent={percent} color={color} smallSize={smallSize} />
         </RadialBarContainerGlobal>
 
     )

@@ -17,6 +17,15 @@ const productName = 'Tênis';
 const productOrder = '004sdfa48d45f asdas d aasdaaaaaaaaaaaaaa';
 var machine_status = 'funcionando';
 
+interface LargerMachineInformationsI {
+    name: string,
+    order_product?: string,
+    order_code?: string,
+    oee_value: string,
+    status: string,
+
+}
+
 const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
 
     return (
@@ -53,7 +62,8 @@ const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
                 </HeaderLargerStatus>
             </HeaderLarger>
             <BodyLarger>
-                <RadialBarOne percent={Math.round(71)} value_to_alert_low={30} value_to_alert_high={70} />
+
+                <RadialBarOne percent={Math.round(50)} value_to_alert_low={30} value_to_alert_high={70} smallSize={false} />
                 <BodyLargerInformations>
                     <BodyLargerInformationShift>
                         <GenericText bold size_percent={70}>
@@ -69,18 +79,18 @@ const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
                     </BodyLargerInformationShift>
                     <BodyLargerInformationContainerAprovedAndScrap>
                         <BodyLargerInformationAprovedAndScrap>
-                            <GenericText size_percent={45}>
+                            <GenericText size_percent={45} lineHeiZero >
                                 APROVADOS
                             </GenericText>
-                            <GenericText size_percent={50} bold>
+                            <GenericText size_percent={50} bold lineHeiZero >
                                 2.740
                             </GenericText>
                         </BodyLargerInformationAprovedAndScrap>
                         <BodyLargerInformationAprovedAndScrap>
-                            <GenericText size_percent={45}>
+                            <GenericText size_percent={45} lineHeiZero >
                                 REFUGO
                             </GenericText>
-                            <GenericText size_percent={50} bold>
+                            <GenericText size_percent={50} bold lineHeiZero >
                                 747
                             </GenericText>
 
@@ -88,7 +98,9 @@ const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
                     </BodyLargerInformationContainerAprovedAndScrap>
 
                     <BodyLargerInformationProductionPerOrder>
-                        <ProgressBar />
+                        <GenericText size_percent={50} lineHeiZero >PRODUÇÃO/ORDEM</GenericText>
+                        <ProgressBar value={70} />
+                        <GenericText size_percent={45} lineHeiZero align="end" ><b>3.487 / </b>10.000</GenericText>
                     </BodyLargerInformationProductionPerOrder>
                 </BodyLargerInformations>
             </BodyLarger>

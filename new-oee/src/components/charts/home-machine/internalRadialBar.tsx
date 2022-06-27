@@ -4,18 +4,19 @@ import { InternalRadialDiv, PercentInternalRadial, TextOEE } from "./style-inter
 
 interface InternalRadialBarOneI {
     percent: number,
-    color: string
+    color: string,
+    smallSize?: boolean
 }
 
-const InternalRadialBarOne: React.FC<InternalRadialBarOneI> = ({ percent, color }) => {
+const InternalRadialBarOne: React.FC<InternalRadialBarOneI> = ({ percent, color, smallSize }) => {
 
     return (
 
         <InternalRadialDiv>
-            <PercentInternalRadial color={color}>
+            <PercentInternalRadial color={color} change={smallSize}>
                 {percent}%
             </PercentInternalRadial>
-            <TextOEE>
+            <TextOEE change={smallSize}>
                 OEE
             </TextOEE>
 

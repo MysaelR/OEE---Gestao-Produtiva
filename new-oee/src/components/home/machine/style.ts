@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 
 import { useWindowSize } from "../../../utils/useWindowSize";
+import { getColorByMachineStatus } from "../../../utils/utils";
 
 function useSize() {
     const size = useWindowSize();
@@ -26,7 +27,12 @@ interface NumberControll{
 }
 interface TextControllI{
     size_percent?: number,
-    bold?: boolean
+    bold?: boolean,
+    align?: string,
+    lineHeiZero?: boolean,
+
+
+    ajdustSmallScale?: boolean,
 }
 //TAMANHO DAS MAQUINAS
 
@@ -74,6 +80,13 @@ export const LargerMachineContainer = styled.div<WindowsSize>`
 export const GenericText = styled.p<TextControllI>`
     font-size: ${(element: TextControllI) => element.size_percent}%;
     font-weight: ${(element: TextControllI) => element.bold? 'bold' : 'normal'};
+    line-height: ${(element: TextControllI) => element.lineHeiZero? 0 : 'normal'};
+    text-align: ${(element: TextControllI) => element.align?  element.align === 'center'? 'center' : element.align === 'end'? 'end' : 'left' : ''} ;
+
+    @media only screen and (min-width: 1900px){
+
+        font-size: ${(element: TextControllI) => element.size_percent && element.size_percent * 1.2}%;
+    }
 `
 
 //#region header
@@ -282,6 +295,7 @@ export const BodyLargerInformationProductionPerOrder = styled.div`
     border: 1px solid rgba(193, 194, 195, 0.2);
     border-radius: 2px;
     height: 25%;
+    padding: 5px;
 `
 //#endregion body
 
@@ -295,38 +309,217 @@ export const BodyLargerInformationProductionPerOrder = styled.div`
 //#region medium-machine
 export const MediumMachineContainer = styled.div<WindowsSize>`
 position: relative;
-    border: 1px solid blue;
-    min-width: 215px;
-    min-height: 245px;
+    border: 1px solid ${getColorByMachineStatus('Parada')};
+    /* min-width: 215px;
+    min-height: 245px; */
+    min-width: 175px;
+    min-height: 234px;
     border-radius: 4px;
+    padding: 5px;
 
     //#region size-controll
-    width: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 0.57) * 215}px;
-    height: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 0.57) * 245}px;
-    max-width: 322.5px;//min-width x 1.5
-    max-height: 490px; //min-height x 1.5
+    width: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 0.4) * 215}px;
+    height: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 0.5) * 245}px;
+    max-width: 292px;//min-width x 2
+    max-height: 390px; //min-height x 2
 
     @media only screen and (min-width: 1800px) {
-        width: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 0.7) * 215}px;
-        height: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 0.7) * 245}px;
+        width: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 0.55) * 215}px;
+        height: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 0.55) * 245}px;
     }
 
     @media only screen and (min-width: 2000px) {
-        width: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 3) * 215}px;
-        height: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 3) * 245}px;
+        width: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 0.6) * 215}px;
+        height: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 0.7) * 245}px;
     }
 
     @media only screen and (min-height: 2000px) {
-        width: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 3) * 215}px;
-        height: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 3) * 245}px;
+        width: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 2) * 215}px;
+        height: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 2) * 245}px;
     }
 
     @media only screen and (max-width: 900px) and (max-height: 450px) {
-        width: 215px;
-        height: 245px;
+        width: 146px;
+        height: 195px;
     }
     //#endregion
 `
+
+//#region header
+export const HeaderMedium = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 94%;
+    height: 30%;
+
+    margin-left: 3%;
+`
+export const HeaderMediumMachineId = styled.p`
+    height: 10%;
+    margin-top: 0;
+    width: 100%;
+    color: #2E2F30;
+    font-size: 0.8vh;
+    padding-bottom: 2px;
+
+
+
+    //#region font-size
+    @media only screen and (min-width: 700px) and (min-height: 1000px) {
+        font-size: clamp(0.4em, 0.3vh + 0.4vw, 0.8em);
+    }
+
+    @media only screen and (min-width: 1080px) and (min-height: 1900px) {
+        font-size: 0.3vh;
+    }
+    @media only screen and (min-height: 2000px) {
+        font-size: 0.30vh;
+    }
+
+    @media only screen and (max-width: 920px) and (max-height: 450px) {
+        font-size: clamp(0.4em, 0.5vh + 0.7vw, 0.8em);
+    }
+    @media only screen and (max-width: 2000px) and (max-height: 450px) {
+        font-size: clamp(0.4em, 0.5vh + 0.7vw, 0.8em);
+    }
+    //#endregion font-size
+
+`
+export const HeaderMediumMachineName = styled.p`
+    width: 100%;
+    margin-top: -10px;
+    height: 25%;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #C7C7C7;
+
+`
+
+//#region order-and-product
+
+export const HeaderMediumContainerProductsAndOrder = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: -10px;
+    height: 25%;
+    max-width: 100%;
+    /* background-color: lightskyblue; */
+    /* white-space: nowrap;
+    overflow: hidden; //faz com que o excedente do texto seja escondido
+    text-overflow: ellipsis; //Adiciona reticências  */
+`
+export const HeaderMediumProductAndOrderIcon = styled.img`
+    height: 65%;
+    max-width: 15%;
+    min-width: 20px;
+`
+export const HeaderMediumProductAndOrderText = styled.p<NameLength>`
+    margin-left: 5%;
+    font-size: 80%;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: ${(element: NameLength) => element.quantity ? element.quantity > 10 ? 'hidden' : 'visible' : 'hidden'};
+    text-overflow: ellipsis;
+`
+export const HeaderMediumContainerProduct = styled.div`
+    display: flex;
+    flex-direction: row;
+    /* flex: 1; */
+    height: 100%;
+    margin-right: 3%;
+    align-items: center;
+    max-width: 44%;
+`
+
+export const HeaderMediumHalfLineToDivide = styled.p`
+    height: 60%;
+    padding-right: 3%;
+    border-left: 1px solid #C7C7C7;
+`
+export const HeaderMediumContainerOrder = styled.div`
+    display: flex;
+    flex-direction: row;
+    max-width: 44%;
+    height: 100%;
+    /* flex: 1; */
+    align-items: center;
+    overflow: hidden;
+`
+
+//#endregion order-and-product
+
+//#endregion header
+
+//#region body
+export const BodyMedium = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 94%;
+    height: 66%;
+    margin-bottom: 3%;
+    margin-left: 3%;
+    margin-top: 2%;
+
+`
+
+export const ContainerBodyMediumProgressBar = styled.div`
+    width: 100%;
+    height: 80%;
+    padding: 0;
+
+    ${RadialBarContainerGlobal}{
+        width: 100%;
+        margin-top: -10px;
+    }
+`
+export const BodyMediumInformations = styled.div`
+width: 97%;
+border: 1px solid rgba(193, 194, 195, 0.4);
+border-radius: 2px;
+height: 24%;
+margin-top: -10px;
+padding: 1%;
+display: flex;
+
+
+
+`
+export const BodyMediumInformationAproved = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-top: 1%;
+`
+export const BodyMediumInformationScrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-top: 1%;
+
+`
+export const BodyMediumInformationProduction = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-top: 1%;
+    
+
+`
+export const BodyMediumInformationDivider = styled.div`
+    border-left: 0.05px solid black;
+    margin-right: 5px;
+    margin-left: 5px;
+
+
+`
+
+//#endregion body
+
 //#endregion medium-machine
 
 
@@ -334,13 +527,14 @@ position: relative;
 //#region small-machine
 
 export const SmallMachineContainer = styled.div<WindowsSize>`
-position: relative;
-    border: 1px solid red;
+    position: relative;
+    border: 1px solid ${getColorByMachineStatus('Produzindo')};
     min-width: 98px;
     max-width: 196px;
     min-height: 147px;
     max-height: 294px;
     border-radius: 4px;
+    padding: 2px;
 
     //#region size-controll
     width: ${(resolution: WindowsSize) => ((resolution.width / resolution.height) * 0.57) * 98}px;
@@ -369,6 +563,98 @@ position: relative;
     //#endregion size-controll
 
 `
+
+//#region header
+export const HeaderSmall = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 94%;
+    height: 30%;
+
+    margin-left: 3%;
+`
+export const HeaderSmallMachineId = styled.p`
+    height: 10%;
+    margin-top: 0;
+    width: 100%;
+    color: #2E2F30;
+    font-size: 0.8vh;
+    padding-bottom: 2px;
+    margin-bottom: 10%;
+
+
+    //#region font-size
+    @media only screen and (min-width: 700px) and (min-height: 1000px) {
+        font-size: clamp(0.4em, 0.3vh + 0.4vw, 0.8em);
+    }
+
+    @media only screen and (min-width: 1080px) and (min-height: 1900px) {
+        font-size: 0.3vh;
+    }
+    @media only screen and (min-height: 2000px) {
+        font-size: 0.30vh;
+    }
+
+    @media only screen and (max-width: 920px) and (max-height: 450px) {
+        font-size: clamp(0.4em, 0.5vh + 0.7vw, 0.8em);
+    }
+    @media only screen and (max-width: 2000px) and (max-height: 450px) {
+        font-size: clamp(0.4em, 0.5vh + 0.7vw, 0.8em);
+    }
+    //#endregion font-size
+
+`
+export const HeaderSmallMachineName = styled.p`
+    width: 100%;
+    margin-top: -10px;
+    height: 100%;
+    font-weight: 600;
+    white-space: normal;
+    /* overflow: hidden;
+    text-overflow: ellipsis; */
+    border-bottom: 1px solid #C7C7C7;
+
+`
+export const HeaderSmallStatus = styled.div<StatusI>`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 97%;
+    height: 25%;
+    margin-top: -10%;
+    padding-left: 3%;
+    border-radius: 2px;
+    background-color: ${(element) => element.status === 'funcionando'? '#DFF6EB' : '#F6DFDF'};
+`
+
+export const HeaderSmallStatusText = styled.p<StatusI>`
+    color: ${(element: StatusI) => element.status === 'funcionando' ? '#1C8A55' : '#C02B2B'};
+    font-size: 50%;
+
+    @media only screen and (min-width: 2040px) {
+        font-size: 70%;
+    }
+`
+
+//#endregion header
+
+//#region body
+
+export const BodySmall = styled.div`
+    margin-top: 15%;
+    height: 60%; 
+
+    ${RadialBarContainerGlobal}{
+        width: 100%;
+        
+    }
+
+`
+
+//#endregion body
+
+
 //#endregion small-machine
 
 
@@ -377,13 +663,14 @@ position: relative;
 export const ProgressBarPrincipalDiv = styled.div`
 position: relative;
 background-color: #E5E5E5;
-width: 80%;
+width: 100%;
 height: 30%;
 border-radius: 2px;
+
 `
 export const ProgressBarLoaderDiv = styled.div<NumberControll>`
 background-color: #878A8C;
-width: ${(element: NumberControll) => element.value}%;
+width: ${(element: NumberControll) => element.value > 100? 100 : element.value}%;
 height: 100%;
 border-radius: 2px;
 `

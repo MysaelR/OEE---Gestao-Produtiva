@@ -2,11 +2,15 @@ import { useState } from "react";
 
 import { ProgressBarLoaderDiv, ProgressBarPrincipalDiv } from "./style";
 
-const ProgressBar: React.FC = () => {
+interface ProgressBarI {
+    value: number
+}
+
+const ProgressBar: React.FC<ProgressBarI> = ({ value }) => {
 
     return (
         <ProgressBarPrincipalDiv>
-            <ProgressBarLoaderDiv value={50}>
+            <ProgressBarLoaderDiv value={value}>
 
             </ProgressBarLoaderDiv>
         </ProgressBarPrincipalDiv>
