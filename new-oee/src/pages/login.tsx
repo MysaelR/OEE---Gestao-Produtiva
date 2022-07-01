@@ -2,6 +2,7 @@ import { FormHandles, SubmitHandler } from "@unform/core";
 import { Form } from "@unform/web";
 import { Console } from "console";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
 
 import Code from '../assets/login/code.svg';
@@ -10,6 +11,7 @@ import Password from '../assets/login/password.svg';
 import User from '../assets/login/user.svg';
 import { PasswordInputLogin } from "../components/inputs/login/password";
 import { TextInputLogin } from "../components/inputs/login/text";
+import { useAuth } from "../contexts/auth/AuthContext";
 import { BodyLogin, ButtonLoginAndRegister, ContainerLogin, FlexDivLogin, FooterLogin, ForgotPassword, GridDivLogin, HeaderLogin, InputErrorMsg, InputLogin, InputLoginAnchor, InputLoginContainer, InputLoginContainerIcon, InputLoginIcon, MaxContainerLateralSpace, NewUserRegister, OptionLogin, OptionLoginSeparateText, OptionLoginText, PrincipalDivLogin, SubTitleRegisterLogin, SystemLogo, TextForgotPassword, TextForgotPasswordInstruction, TitleRegisterLogin } from "../styles/style-login";
 
 export type ValidationError = {
@@ -20,11 +22,13 @@ export default function Login() {
 
     const [selectedLogin, setSelectedLogin] = useState(true);
     const [selectFormToChange, setSelectFormToChange] = useState<number>(1);
-
+    const { signIn, signOut } = useAuth();
     const formRef = useRef<FormHandles>(null);
     // const formRef2 = useRef<FormHandles>(null);
     // const formRef3 = useRef<FormHandles>(null);
     // const formRef4 = useRef<FormHandles>(null);
+
+    let navigate = useNavigate();
 
 
     interface FormDataLoginUser {
@@ -48,13 +52,22 @@ export default function Login() {
         try {
             const schema = Yup.object().shape({
                 user: Yup.string().required("Deve conter um usuário!"),
-                password: Yup.string().required("deve ter uma senha!").min(10, "Deve conter ao menos 10 caracteres"),
+                password: Yup.string().required("deve ter uma senha!").min(3, "Deve conter ao menos 10 caracteres"),
             })
             await schema.validate(data, {
                 abortEarly: false,
             })
-
+            console.log(data)
             // Validation passed
+
+            await signIn({
+                email: data.user,
+                password: data.password
+            })
+            navigate('/home');
+
+
+
         } catch (err) {
             if (err instanceof Yup.ValidationError) {
                 // Validation failed
@@ -70,6 +83,10 @@ export default function Login() {
                 formRef.current?.setErrors(errorMessages);
 
             }
+            else {
+
+            }
+
 
         }
     }

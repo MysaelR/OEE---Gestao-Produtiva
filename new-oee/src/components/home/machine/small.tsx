@@ -31,7 +31,7 @@ const SmallMachine: React.FC<WindowsSize> = ({ width, height }) => {
                 </HeaderSmallStatus>
             </HeaderSmall>
             <BodySmall>
-                <RadialBarOne percent={Math.round(52)} value_to_alert_low={30} value_to_alert_high={70} smallSize={true} />
+                <RadialBarOne percent={Math.round(16)} value_to_alert_low={30} value_to_alert_high={70} smallSize={true} />
             </BodySmall>
         </SmallMachineContainer>
     )

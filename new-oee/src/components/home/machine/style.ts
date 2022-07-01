@@ -9,6 +9,10 @@ function useSize() {
     return size
 }
 
+interface ActiveI{
+    active?: boolean
+}
+
 interface WindowsSize {
     width: number
     height: number
@@ -30,7 +34,7 @@ interface TextControllI{
     bold?: boolean,
     align?: string,
     lineHeiZero?: boolean,
-
+    mtop?: number,
 
     ajdustSmallScale?: boolean,
 }
@@ -82,7 +86,7 @@ export const GenericText = styled.p<TextControllI>`
     font-weight: ${(element: TextControllI) => element.bold? 'bold' : 'normal'};
     line-height: ${(element: TextControllI) => element.lineHeiZero? 0 : 'normal'};
     text-align: ${(element: TextControllI) => element.align?  element.align === 'center'? 'center' : element.align === 'end'? 'end' : 'left' : ''} ;
-
+    margin-top: ${(element: TextControllI) => element.mtop? element.mtop + '%' : ''};
     @media only screen and (min-width: 1900px){
 
         font-size: ${(element: TextControllI) => element.size_percent && element.size_percent * 1.2}%;
@@ -94,7 +98,7 @@ export const HeaderLarger = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 94%;
+    width: 95%;
     height: 37%;
     margin-top: 3%;
     margin-left: 3%;
@@ -153,8 +157,8 @@ export const HeaderLargerContainerProductsAndOrder = styled.div`
     overflow: hidden; //faz com que o excedente do texto seja escondido
     text-overflow: ellipsis; //Adiciona reticências  */
 `
-export const HeaderLargerProductAndOrderIcon = styled.img`
-    height: 65%;
+export const HeaderLargerProductAndOrderIcon = styled.img<ActiveI>`
+    height: ${(element : ActiveI) => element.active? 45 : 65}%;
     max-width: 15%;
     min-width: 30px;
 `
@@ -206,7 +210,7 @@ export const HeaderLargerStatus = styled.div<StatusI>`
     background-color: ${(element) => element.status === 'funcionando'? '#DFF6EB' : '#F6DFDF'};
 `
 export const HeaderLargerStatusIcon = styled.img`
-    height: 80%;
+    height: 60%;
     margin-right: 5%;
 
 `
@@ -214,12 +218,12 @@ export const HeaderLargerHalfLineToDivideStatus = styled.div<StatusI>`
     height: 70%;
     width: 10px;
     border-left: 1px solid;
-    border-color: ${(element: StatusI) => element.status === 'funcionando' ? '#1C8A55' : '#C02B2B'};
+    border-color: ${(element: StatusI) => element.status === 'funcionando' ? 'rgba(28, 138, 85, 0.2)' : 'rgba(192, 43, 43, 0.2)'};
 `
 
 export const HeaderLargerStatusText = styled.p<StatusI>`
     color: ${(element: StatusI) => element.status === 'funcionando' ? '#1C8A55' : '#C02B2B'};
-    font-size: 80%;
+    font-size: 60%;
 `
 //#endregion status
 
@@ -232,7 +236,7 @@ export const BodyLarger = styled.div`
     display: flex;
 
     flex-direction: row;
-    width: 94%;
+    width: 95%;
     height: 57%;
     margin-bottom: 3%;
     margin-left: 3%;
@@ -296,6 +300,10 @@ export const BodyLargerInformationProductionPerOrder = styled.div`
     border-radius: 2px;
     height: 25%;
     padding: 5px;
+
+    p:nth-child(1){
+        margin-top: 4%;
+    }
 `
 //#endregion body
 
@@ -350,7 +358,7 @@ export const HeaderMedium = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 94%;
+    width: 95%;
     height: 30%;
 
     margin-left: 3%;
@@ -412,8 +420,8 @@ export const HeaderMediumContainerProductsAndOrder = styled.div`
     overflow: hidden; //faz com que o excedente do texto seja escondido
     text-overflow: ellipsis; //Adiciona reticências  */
 `
-export const HeaderMediumProductAndOrderIcon = styled.img`
-    height: 65%;
+export const HeaderMediumProductAndOrderIcon = styled.img<ActiveI>`
+    height: ${(element : ActiveI) => element.active? 50 : 65}%;
     max-width: 15%;
     min-width: 20px;
 `
@@ -459,7 +467,7 @@ export const BodyMedium = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 94%;
+    width: 95%;
     height: 66%;
     margin-bottom: 3%;
     margin-left: 3%;
@@ -511,7 +519,7 @@ export const BodyMediumInformationProduction = styled.div`
 
 `
 export const BodyMediumInformationDivider = styled.div`
-    border-left: 0.05px solid black;
+    border-left: 0.05px solid rgba(0,0,0,0.2);
     margin-right: 5px;
     margin-left: 5px;
 
@@ -569,10 +577,12 @@ export const HeaderSmall = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 94%;
+    width: 90%;
+
     height: 30%;
 
-    margin-left: 3%;
+    margin-left: 5%;
+    margin-top: 5%;
 `
 export const HeaderSmallMachineId = styled.p`
     height: 10%;
@@ -613,7 +623,9 @@ export const HeaderSmallMachineName = styled.p`
     white-space: normal;
     /* overflow: hidden;
     text-overflow: ellipsis; */
+    line-height: 1.4;
     border-bottom: 1px solid #C7C7C7;
+    margin-bottom: 20px;
 
 `
 export const HeaderSmallStatus = styled.div<StatusI>`
@@ -642,12 +654,19 @@ export const HeaderSmallStatusText = styled.p<StatusI>`
 //#region body
 
 export const BodySmall = styled.div`
-    margin-top: 15%;
+    margin-top: 10%;
     height: 60%; 
 
     ${RadialBarContainerGlobal}{
         width: 100%;
         
+    }
+
+    @media only screen and (max-width: 1400px){
+        margin-top: 15%;
+    }
+    @media only screen and (max-width: 920px) and (max-height: 450px) {
+        margin-top: 15%;
     }
 
 `

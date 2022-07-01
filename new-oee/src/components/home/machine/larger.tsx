@@ -45,7 +45,7 @@ const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
                     <HeaderLargerHalfLineToDivide />
 
                     <HeaderLargerContainerOrder>
-                        <HeaderLargerProductAndOrderIcon src={OrderIcon} />
+                        <HeaderLargerProductAndOrderIcon src={OrderIcon} active />
 
                         <HeaderLargerProductAndOrderText>
                             {productOrder}
@@ -63,14 +63,14 @@ const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
             </HeaderLarger>
             <BodyLarger>
 
-                <RadialBarOne percent={Math.round(50)} value_to_alert_low={30} value_to_alert_high={70} smallSize={false} />
+                <RadialBarOne percent={Math.round(76)} value_to_alert_low={30} value_to_alert_high={70} smallSize={false} />
                 <BodyLargerInformations>
                     <BodyLargerInformationShift>
                         <GenericText bold size_percent={70}>
                             17:00 &nbsp;
                         </GenericText>
                         <HeaderLargerHalfLineToDivide />
-                        <GenericText size_percent={60}>
+                        <GenericText size_percent={50}>
                             TURNO:&nbsp;
                         </GenericText>
                         <GenericText size_percent={50} bold>
@@ -82,7 +82,7 @@ const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
                             <GenericText size_percent={45} lineHeiZero >
                                 APROVADOS
                             </GenericText>
-                            <GenericText size_percent={50} bold lineHeiZero >
+                            <GenericText size_percent={60} bold lineHeiZero >
                                 2.740
                             </GenericText>
                         </BodyLargerInformationAprovedAndScrap>
@@ -90,7 +90,7 @@ const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
                             <GenericText size_percent={45} lineHeiZero >
                                 REFUGO
                             </GenericText>
-                            <GenericText size_percent={50} bold lineHeiZero >
+                            <GenericText size_percent={60} bold lineHeiZero >
                                 747
                             </GenericText>
 

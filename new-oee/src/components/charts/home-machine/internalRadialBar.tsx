@@ -15,6 +15,7 @@ const InternalRadialBarOne: React.FC<InternalRadialBarOneI> = ({ percent, color,
         <InternalRadialDiv>
             <PercentInternalRadial color={color} change={smallSize}>
                 {percent}%
+
             </PercentInternalRadial>
             <TextOEE change={smallSize}>
                 OEE

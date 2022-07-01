@@ -26,24 +26,26 @@ export const InternalRadialDiv = styled.div`
 export const PercentInternalRadial = styled.p<ColorI & SmallVisualizationI>`
     margin-top: 15%;
     text-align: center;
-    font-size: clamp(1.5em, 1.5em + 1.5vw, 2em);
+    /* font-size: clamp(1.4em, 1.5em + 1.5vw, 1.8em); */
+    font-size:${(element: SmallVisualizationI) => element.change ? 'clamp(1.5em, 0.5em + 0.5vw, 1.2em)' : 'clamp(1.8em, 1.3em + 1.3vw, 2em)'};
     color: ${(element: ColorI) => element.color};
     border-bottom: 1px solid #C7C7C7;
 
-    @media screen and (max-width: 1100px){
+    @media screen and (max-width: 1500px){
         /* font-size: clamp(1.3em, 1.3em + 1.3vw, 1.8em); */
         font-size:${(element: SmallVisualizationI) => element.change ? 'clamp(1em, 0.5em + 0.5vw, 1em)' : 'clamp(1.3em, 1.3em + 1.3vw, 1.8em)'};
+       
     }
 
     @media screen and (min-width: 2000px){
-        font-size: clamp(2em, 2em + 2vw, 2.5em);
+        font-size: clamp(2em, 2em + 2vw, 2.5em); color: red;
     }
     @media screen and (min-width: 3000px){
         font-size: clamp(2em, 2em + 2vw, 2.5em);
     }
 
     @media only screen and (max-width: 900px) and (max-height: 450px) {
-        font-size: 4vw;
+        font-size:${(element: SmallVisualizationI) => element.change ? 'clamp(1em, 0.5em + 0.5vw, 1em)' : 'clamp(1.3em, 1.3em + 1.3vw, 1.8em)'};
     }
     
 

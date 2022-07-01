@@ -37,7 +37,7 @@ const MediumMachine: React.FC<WindowsSize> = ({ width, height }) => {
                     <HeaderMediumHalfLineToDivide />
 
                     <HeaderMediumContainerOrder>
-                        <HeaderMediumProductAndOrderIcon src={OrderIcon} />
+                        <HeaderMediumProductAndOrderIcon src={OrderIcon} active />
 
                         <HeaderMediumProductAndOrderText>
                             {productOrder}
@@ -55,33 +55,33 @@ const MediumMachine: React.FC<WindowsSize> = ({ width, height }) => {
             </HeaderMedium>
             <BodyMedium>
                 <ContainerBodyMediumProgressBar>
-                    <RadialBarOne percent={Math.round(10)} value_to_alert_low={30} value_to_alert_high={70} smallSize={false} />
+                    <RadialBarOne percent={Math.round(56)} value_to_alert_low={30} value_to_alert_high={70} smallSize={false} />
                 </ContainerBodyMediumProgressBar>
 
                 <BodyMediumInformations>
                     <BodyMediumInformationAproved>
-                        <GenericText lineHeiZero size_percent={45} align="center">
+                        <GenericText lineHeiZero size_percent={40} align="center">
                             APROVADOS
                         </GenericText>
-                        <GenericText lineHeiZero size_percent={49} bold align="center">
+                        <GenericText lineHeiZero size_percent={70} bold align="center">
                             2.740
                         </GenericText>
                     </BodyMediumInformationAproved>
                     <BodyMediumInformationDivider />
                     <BodyMediumInformationScrap>
-                        <GenericText lineHeiZero size_percent={45} align="center">
+                        <GenericText lineHeiZero size_percent={40} align="center">
                             REFUGO
                         </GenericText>
-                        <GenericText lineHeiZero size_percent={49} bold align="center">
+                        <GenericText lineHeiZero size_percent={70} bold align="center">
                             747
                         </GenericText>
                     </BodyMediumInformationScrap>
                     <BodyMediumInformationDivider />
                     <BodyMediumInformationProduction>
-                        <GenericText lineHeiZero size_percent={45} align="center">
+                        <GenericText lineHeiZero size_percent={40} align="center">
                             PRODUÇÃO
                         </GenericText>
-                        <GenericText lineHeiZero size_percent={49} bold align="center">
+                        <GenericText lineHeiZero size_percent={55} align="center" mtop={23}>
                             <b>3.487</b>/10.000
                         </GenericText>
                     </BodyMediumInformationProduction>
