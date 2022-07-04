@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useCallback, useContext, useState } from "react";
+import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from "react";
 
 import api from '../../services/api';
 import { SocketActions, useSocket } from "../socket/socket";
@@ -45,6 +45,8 @@ interface DecodedProps {
 // cria o contexto de autenticação
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
+
+
 // cria o provedor do contexto
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const { stateSocket, dispatch } = useSocket();
@@ -86,14 +88,18 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         }
         */
 
-        dispatch({
-            type: SocketActions.setUser,
-            payload: null,
-        })
+
         // retorna um objeto vazio
         return {} as AuthState;
 
     });
+
+    useEffect(() => {
+        dispatch({
+            type: SocketActions.setUser,
+            payload: null,
+        })
+    }, [])
 
     // função de signin usando callback
     const signIn = useCallback(async ({ email, password }: any) => {
@@ -203,6 +209,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 function useAuth(): AuthContextData {
     // atribui o contexto ao hook
     const context = useContext(AuthContext);
+
+
 
     // se não existir retorna um erro
     if (!context) {

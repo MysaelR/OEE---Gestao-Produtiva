@@ -11,10 +11,14 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
+  // <React.StrictMode>
+  //   <SocketProvider>
+  //     <App />
+  //   </SocketProvider>
   <React.StrictMode>
-    <SocketProvider>
-      <App />
-    </SocketProvider>
+
+    <App />
+
 
   </React.StrictMode>
 );

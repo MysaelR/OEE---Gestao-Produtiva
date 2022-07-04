@@ -1,22 +1,25 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
 import socketCliente, { Manager } from "socket.io-client";
 
-import { socketServer } from '../../services/api';
+// import { socketServer } from '../../services/api';
+
+
+const socketServer = "http://senaisolucoes.com.br:2034";
 
 type ObjectSocketToSend = {
-    inMachineList: boolean;
-    inMachineDetails: boolean;
-    machine_list: string[];
-    locationUrl: string;
+    // inMachineList: boolean;
+    // inMachineDetails: boolean;
+    // machine_list: string[];
+    // locationUrl: string;
     ioSocket: any;
     user: any;
 }
 
 export enum SocketActions {
-    setInMachineList,
-    setInMachineDetails,
-    setMachine_list,
-    setLocationUrl,
+    // setInMachineList,
+    // setInMachineDetails,
+    // setMachine_list,
+    // setLocationUrl,
     setIoSocket,
     setUser,
 }
@@ -38,14 +41,14 @@ const SocketContext = createContext<ContextType | undefined>(undefined);
 
 const socketReducer = (socket: ObjectSocketToSend, action: Action) => { //Ela recebe uma state (os dados), e recebe uma action (que ação eu quero executar com esses dados)
     switch (action.type) { //um switch pra ver qual ação eu vou querer realizar, o type fala o tipo de ação, exemplo: trocar o nome do usuário que está no contexto, um setName.
-        case SocketActions.setInMachineDetails:
-            return { ...socket, machineDetails: action.payload };
-        case SocketActions.setInMachineList:
-            return { ...socket, inMachineList: action.payload };
-        case SocketActions.setMachine_list:
-            return { ...socket, machine_list: action.payload };
-        case SocketActions.setLocationUrl:
-            return { ...socket, locationUrl: action.payload };
+        // case SocketActions.setInMachineDetails:
+        //     return { ...socket, machineDetails: action.payload };
+        // case SocketActions.setInMachineList:
+        //     return { ...socket, inMachineList: action.payload };
+        // case SocketActions.setMachine_list:
+        //     return { ...socket, machine_list: action.payload };
+        // case SocketActions.setLocationUrl:
+        //     return { ...socket, locationUrl: action.payload };
         case SocketActions.setIoSocket:
             return { ...socket, ioSocket: action.payload };
         case SocketActions.setUser:
@@ -70,10 +73,10 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
     });
 
     const initialData: ObjectSocketToSend = { //dados iniciais
-        inMachineList: false,
-        inMachineDetails: false,
-        machine_list: [],
-        locationUrl: '',
+        // inMachineList: false,
+        // inMachineDetails: false,
+        // machine_list: [],
+        // locationUrl: '',
         ioSocket,
         user: null,
     }
@@ -81,22 +84,22 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
     const [stateSocket, dispatch] = useReducer(socketReducer, initialData); //state tem os dados, e dispatch tem uma função que usa para executar as ações //segundo parametro são dados iniciais
     const value = { stateSocket, dispatch };
 
-    const path = useMemo(() => stateSocket.locationUrl, [stateSocket])
+    // const path = useMemo(() => stateSocket.locationUrl, [stateSocket])
 
 
-    const handleSocketSetInMachineList = (b: boolean) => {
-        dispatch({
-            type: SocketActions.setInMachineList,
-            payload: b,
-        })
-    }
+    // const handleSocketSetInMachineList = (b: boolean) => {
+    //     dispatch({
+    //         type: SocketActions.setInMachineList,
+    //         payload: b,
+    //     })
+    // }
 
-    const handleSocketSetInMachineDetails = (b: boolean) => {
-        dispatch({
-            type: SocketActions.setInMachineDetails,
-            payload: b
-        })
-    }
+    // const handleSocketSetInMachineDetails = (b: boolean) => {
+    //     dispatch({
+    //         type: SocketActions.setInMachineDetails,
+    //         payload: b
+    //     })
+    // }
 
     useEffect(() => {
         if (stateSocket.user) {
@@ -104,16 +107,16 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
             stateSocket.ioSocket.auth.user_id = stateSocket.user.user_id;
             stateSocket.ioSocket.connect();
 
-            if (path === "/machines") {
-                handleSocketSetInMachineList(true);
-                handleSocketSetInMachineDetails(false);
-            } else if (path === '/workstation/details') {
-                handleSocketSetInMachineDetails(true);
-                handleSocketSetInMachineList(false);
-            } else {
-                handleSocketSetInMachineDetails(false);
-                handleSocketSetInMachineList(false);
-            }
+            // if (path === "/machines") {
+            //     handleSocketSetInMachineList(true);
+            //     handleSocketSetInMachineDetails(false);
+            // } else if (path === '/workstation/details') {
+            //     handleSocketSetInMachineDetails(true);
+            //     handleSocketSetInMachineList(false);
+            // } else {
+            //     handleSocketSetInMachineDetails(false);
+            //     handleSocketSetInMachineList(false);
+            // }
         }
         else {
             return () => {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const socketServer = "http://senaisolucoes.com.br:2034";
+// export const socketServer = "http://senaisolucoes.com.br:2034";
 const baseURL = 'http://senaisolucoes.com.br:2033';
 
 

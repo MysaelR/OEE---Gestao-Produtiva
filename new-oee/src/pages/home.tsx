@@ -16,11 +16,13 @@ export default function Home() {
 
     return (
         <>
-            <Theme>
-                <LargerMachine width={size.width} height={size.height} />
-                <MediumMachine width={size.width} height={size.height} />
-                <SmallMachine width={size.width} height={size.height} />
-                {/* 
+
+            <LargerMachine width={size.width} height={size.height} />
+            <MediumMachine width={size.width} height={size.height} />
+            <SmallMachine width={size.width} height={size.height} />            <MediumMachine width={size.width} height={size.height} />
+
+
+            {/* 
 
                 <ButtonAdd>+ ADICIONAR</ButtonAdd>
                 <ContainerSearchbarHome>
@@ -29,8 +31,8 @@ export default function Home() {
                     <FilterIconSearchbarHome src={IconFilter} />
 
                 </ContainerSearchbarHome> */}
-                <RangeSizeMachine />
-            </Theme>
+            <RangeSizeMachine />
+
 
         </>
 
