@@ -1,6 +1,45 @@
 import styled, { css } from "styled-components";
 
+export const ContainerTop = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-height: 120px;
+    padding-bottom: 40px;
+
+`
+export const ContainerTopMachinesAndButton = styled.div`
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #cccccc;
+    align-items: center;
+
+`
+
+export const ContainerTopSearchAndRanger = styled.div`
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 15px;
+ 
+`
+
+export const TitleHome = styled.p`
+    color: #E66B25;
+    font-size: 180%;
+    font-weight: bolder;
+    
+    @media only screen and (max-width: 800px) {
+        display: none;
+    }
+`
+
 export const ButtonAdd = styled.button`
+position: absolute;
+right: 0;
 min-height: 22.4px;
 min-width: 102.2px;
 height: 32px;
@@ -49,6 +88,18 @@ export const InputSearchbarHome = styled.input`
     }
 `
 
+export const RangeContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    right: 0;
+
+    img{
+       min-height: 10px;
+    }
+`
+
 export const InputRangeMachineSizeControll = styled.input`
 
     cursor: pointer;
@@ -71,11 +122,15 @@ export const InputRangeMachineSizeControll = styled.input`
         background-color: #FFFCFC;
         margin-top: -5px;
         cursor: pointer;
+
+
         
         
     }
    
-
+    @media only screen and (max-width: 400px) {
+        width: 80px;
+    }
 
 
  

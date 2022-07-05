@@ -1,7 +1,7 @@
-import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from "react";
-
 import api from '../../services/api';
 import { SocketActions, useSocket } from "../socket/socket";
+import jwtDecode from "jwt-decode";
+import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from "react";
 
 interface IUser {
     id: string;
@@ -55,38 +55,38 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [data, setData] = useState<AuthState>(() => {
         // O usuário precisar sempre se connectar primeiro ao socket para depois entrar na aplicação
         // como não está feito foi preciso ser comentado
-        /*
+
         // busca no local storage os dados
         const token = localStorage.getItem('@Oee:token');
         const user = localStorage.getItem('@Oee:user');
         const refresh_token = localStorage.getItem('@Oee:refresh_token');
-    
+
         // se houver dados no storage, retorna um objeto com esses dados
-        if (token && user && refresh_token) {
-          const decoded: DecodedProps = jwtDecode(token);
-          //console.log("Produzindo")
-          const expirationTime = (decoded.exp * 1000);
-    
-          if (Date.now() >= expirationTime) {
-            dispatch({
-              type: SocketActions.setUser,
-              payload: null,
-            })
-            //console.log("qualquer coisa")
-            // retorna um objeto vazio
-            return {} as AuthState;
-          }
-    
-          api.defaults.headers.common.authorization = `Bearer ${token}`;
-    
-          dispatch({
-            type: SocketActions.setUser,
-            payload: user,
-          })
-    
-          return { token, user: JSON.parse(user), refresh_token };
-        }
-        */
+        // if (token && user && refresh_token) {
+        //     const decoded: DecodedProps = jwtDecode(token);
+        //     //console.log("Produzindo")
+        //     const expirationTime = (decoded.exp * 1000);
+
+        //     if (Date.now() >= expirationTime) {
+        //         dispatch({
+        //             type: SocketActions.setUser,
+        //             payload: null,
+        //         })
+        //         //console.log("qualquer coisa")
+        //         // retorna um objeto vazio
+        //         return {} as AuthState;
+        //     }
+
+        //     api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+        //     dispatch({
+        //         type: SocketActions.setUser,
+        //         payload: user,
+        //     })
+
+        //     return { token, user: JSON.parse(user), refresh_token };
+        // }
+
 
 
         // retorna um objeto vazio

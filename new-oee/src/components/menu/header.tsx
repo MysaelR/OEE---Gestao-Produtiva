@@ -1,9 +1,9 @@
 import React from "react";
+
+import MyPhoto from '../../assets/menu/cracha.png';
 import Menu from '../../assets/menu/menu.svg';
 import Logo from '../../assets/menu/oee_logo.svg';
-import MyPhoto from '../../assets/menu/cracha.png';
 import { ContainerUserHeader, HeaderContainer, LogoIconHeader, MenuIconHeader, PhotoContainerUserHeader, UserAndWorkContainerUserHeader, UserTextContainerUserHeader, WorkTextContainerUserHeader } from "./style";
-
 
 interface HeaderMenuI {
     menuIcon: boolean,
@@ -12,6 +12,7 @@ interface HeaderMenuI {
 
 
 const Header: React.FC<HeaderMenuI> = ({ menuIcon, showMenu }) => {
+
 
 
     return (

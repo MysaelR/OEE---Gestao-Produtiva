@@ -1,14 +1,14 @@
 import React, { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import Home from '../../assets/menu/home.svg'
-import View from '../../assets/menu/view_agenda.svg';
 import Collectors from '../../assets/menu/collectors.svg';
-import Settings from '../../assets/menu/settings.svg';
 import ExpandCircle from '../../assets/menu/expand.svg';
+import Home from '../../assets/menu/home.svg'
 import Logout from '../../assets/menu/logout.svg';
 import RevertExpand from '../../assets/menu/revert_expand.svg';
+import Settings from '../../assets/menu/settings.svg';
+import View from '../../assets/menu/view_agenda.svg';
 import { LateralMenu, LineDivideOptionLateralMenu, OptionLateralMenu, TextOptionLateralMenu } from "./style";
-import { useNavigate } from "react-router-dom";
 
 /* interface LateralMenuI {
     expandMenu: boolean
@@ -32,7 +32,7 @@ const Lateral: React.FC = () => {
     return (
         <LateralMenu active={expand} >
 
-            <OptionLateralMenu active={expand} selected={memorizedOption(1)} onClick={() => { setSelected(1) }}>
+            <OptionLateralMenu active={expand} selected={memorizedOption(1)} onClick={() => { setSelected(1); navegate('/home') }}>
                 <img src={Home} />
                 <TextOptionLateralMenu active={expand}>INÍCIO</TextOptionLateralMenu>
             </OptionLateralMenu>

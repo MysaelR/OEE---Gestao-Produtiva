@@ -1,11 +1,10 @@
+import { Fragment, ReactNode, useState } from "react";
+import { Routes, useLocation } from "react-router-dom";
 
 import Header from "../components/menu/header";
 import Lateral from "../components/menu/lateral";
-import { ReactNode, useState, Fragment } from "react";
-
-import { Area, Container, LateralModifield, Page } from "./style";
-import { Routes, useLocation } from "react-router-dom";
 import { MobileMenu } from "../components/menu/mobile-menu";
+import { Area, Container, LateralModifield, Page, PageMargins } from "./style";
 
 type Props = {
     children: ReactNode

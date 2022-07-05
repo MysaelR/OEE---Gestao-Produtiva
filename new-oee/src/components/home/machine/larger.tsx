@@ -17,22 +17,47 @@ const productName = 'Tênis';
 const productOrder = '004sdfa48d45f asdas d aasdaaaaaaaaaaaaaa';
 var machine_status = 'funcionando';
 
+
+
 interface LargerMachineInformationsI {
     name: string,
-    order_product?: string,
-    order_code?: string,
-    oee_value: string,
+    approved: number,
+    scrap: number,
+    rework: number,
+    fast_socket_id: string,
+    oee: number,
+    shifts: { hour_begin: string, hour_end: string }[],
     status: string,
+    discount_rework: boolean,
+    discount_scrap: boolean,
+
 
 }
 
-const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
+function CalcProduction(rework: boolean, scrap: boolean, approvedV: number, reworkV: number, scrapV: number) {
+    let value = 0;
+    if (rework) {
+        value += reworkV;
+    }
+    else if (scrap) {
+        value += scrapV;
+    }
+    value += approvedV;
+    return value;
+}
+
+
+const LargerMachine: React.FC<WindowsSize & LargerMachineInformationsI> = (
+    { width, height, fast_socket_id, name, status, oee, shifts, approved,
+        scrap, rework, discount_rework, discount_scrap }) => {
+
+    var production = CalcProduction(discount_rework, discount_scrap, approved, rework, scrap);
 
     return (
         <LargerMachineContainer width={width} height={height}>
             <HeaderLarger>
-                <HeaderLargerMachineId>0000-0000</HeaderLargerMachineId>
-                <HeaderLargerMachineName>Prensa Menegotto</HeaderLargerMachineName>
+                <HeaderLargerMachineId>{fast_socket_id}</HeaderLargerMachineId>
+                <HeaderLargerMachineName>{name}</HeaderLargerMachineName>
                 <HeaderLargerContainerProductsAndOrder>
 
                     <HeaderLargerContainerProduct>
@@ -53,17 +78,17 @@ const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
                     </HeaderLargerContainerOrder>
 
                 </HeaderLargerContainerProductsAndOrder>
-                <HeaderLargerStatus status={machine_status}>
-                    <HeaderLargerStatusIcon src={machine_status === "funcionando" ? WorkingIcon : StopedIcon} />
-                    <HeaderLargerHalfLineToDivideStatus status={machine_status} />
-                    <HeaderLargerStatusText status={machine_status}>
-                        {machine_status === 'funcionando' ? 'FUNCIONANDO' : 'PARADA'}
+                <HeaderLargerStatus status={status === "Funcionando" || status === "Fora do turno" ? 'funcionando' : 'parada'}>
+                    <HeaderLargerStatusIcon src={status === "Funcionando" || status === "Fora do turno" ? WorkingIcon : StopedIcon} />
+                    <HeaderLargerHalfLineToDivideStatus status={status} />
+                    <HeaderLargerStatusText status={status === "Funcionando" || status === "Fora do turno" ? 'funcionando' : 'parada'}>
+                        {status === 'funcionando' || status === "Fora do turno" ? 'FUNCIONANDO' : 'PARADA'}
                     </HeaderLargerStatusText>
                 </HeaderLargerStatus>
             </HeaderLarger>
             <BodyLarger>
 
-                <RadialBarOne percent={Math.round(76)} value_to_alert_low={30} value_to_alert_high={70} smallSize={false} />
+                <RadialBarOne percent={Math.round(oee)} value_to_alert_low={30} value_to_alert_high={70} smallSize={false} />
                 <BodyLargerInformations>
                     <BodyLargerInformationShift>
                         <GenericText bold size_percent={70}>
@@ -74,7 +99,7 @@ const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
                             TURNO:&nbsp;
                         </GenericText>
                         <GenericText size_percent={50} bold>
-                            09:45 - 17:45
+                            {`${shifts[0].hour_begin} - ${shifts[0].hour_end}`}
                         </GenericText>
                     </BodyLargerInformationShift>
                     <BodyLargerInformationContainerAprovedAndScrap>
@@ -83,7 +108,7 @@ const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
                                 APROVADOS
                             </GenericText>
                             <GenericText size_percent={60} bold lineHeiZero >
-                                2.740
+                                {approved}
                             </GenericText>
                         </BodyLargerInformationAprovedAndScrap>
                         <BodyLargerInformationAprovedAndScrap>
@@ -91,7 +116,7 @@ const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
                                 REFUGO
                             </GenericText>
                             <GenericText size_percent={60} bold lineHeiZero >
-                                747
+                                {scrap}
                             </GenericText>
 
                         </BodyLargerInformationAprovedAndScrap>
@@ -100,7 +125,7 @@ const LargerMachine: React.FC<WindowsSize> = ({ width, height }) => {
                     <BodyLargerInformationProductionPerOrder>
                         <GenericText size_percent={50} lineHeiZero >PRODUÇÃO/ORDEM</GenericText>
                         <ProgressBar value={70} />
-                        <GenericText size_percent={45} lineHeiZero align="end" ><b>3.487 / </b>10.000</GenericText>
+                        <GenericText size_percent={45} lineHeiZero align="end" ><b>{production} / </b>10.000</GenericText>
                     </BodyLargerInformationProductionPerOrder>
                 </BodyLargerInformations>
             </BodyLarger>

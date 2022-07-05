@@ -634,10 +634,15 @@ export const HeaderSmallStatus = styled.div<StatusI>`
     align-items: center;
     width: 97%;
     height: 25%;
-    margin-top: -10%;
+    margin-top: -20%;
     padding-left: 3%;
     border-radius: 2px;
     background-color: ${(element) => element.status === 'funcionando'? '#DFF6EB' : '#F6DFDF'};
+
+
+    @media only screen and (min-width: 1800px){
+        margin-top: -12%;
+    }
 `
 
 export const HeaderSmallStatusText = styled.p<StatusI>`
@@ -654,8 +659,8 @@ export const HeaderSmallStatusText = styled.p<StatusI>`
 //#region body
 
 export const BodySmall = styled.div`
-    margin-top: 10%;
-    height: 60%; 
+    margin-top: 14%;
+    height: 55%; 
 
     ${RadialBarContainerGlobal}{
         width: 100%;
@@ -663,10 +668,10 @@ export const BodySmall = styled.div`
     }
 
     @media only screen and (max-width: 1400px){
-        margin-top: 15%;
+        margin-top: 17%;
     }
     @media only screen and (max-width: 920px) and (max-height: 450px) {
-        margin-top: 15%;
+        margin-top: 17%;
     }
 
 `
