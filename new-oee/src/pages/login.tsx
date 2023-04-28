@@ -302,8 +302,6 @@ export default function Login() {
                         {
                             selectFormToChange === 1 && (
                                 <>
-
-
                                     <Form ref={formRef} onSubmit={handleSubmitLoginUser}>
                                         <TextInputLogin name='user' errorMsg="" icon={User} placeHolder="USUÁRIO" top={0} type="text" />
                                         <PasswordInputLogin name='password' errorMsg="" placeHolder="SENHA" top={0} onSubmit={() => formRef.current?.submitForm()} />
@@ -311,8 +309,6 @@ export default function Login() {
                                             Esqueci minha senha
                                         </ForgotPassword>
                                     </Form>
-
-
                                 </>
                             )}
                         {selectFormToChange === 2 &&

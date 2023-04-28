@@ -1,18 +1,19 @@
-import { useCallback, useEffect, useState } from "react";
-
 import IconFilter from '../assets/home/filter_list.svg';
 import IconSearch from '../assets/home/searchsearch.svg';
-import LargerMachine from "../components/home/machine/larger";
-import MediumMachine from "../components/home/machine/medium";
-import SmallMachine from "../components/home/machine/small";
-import TopHome from "../components/home/top";
-import RangeSizeMachine from "../components/home/top/rangeSizeMachine";
-import { ButtonAdd, ContainerSearchbarHome, FilterIconSearchbarHome, InputRangeMachineSizeControll, InputSearchbarHome, SearchIconSearchbarHome } from "../components/home/top/style";
-import LoadingPage from '../components/loading-page/loading';
-import { listWorkstationsBegin } from "../services/workstations";
-import { MachinesContainerHome } from "../styles/style-home";
-import { Theme } from "../theme/theme";
-import { useWindowSize } from "../utils/useWindowSize";
+import { useCallback, useEffect, useState } from "react";
+
+import LargerMachine from "../../components/home/machine/larger";
+import MediumMachine from "../../components/home/machine/medium";
+import SmallMachine from "../../components/home/machine/small";
+import TopHome from "../../components/home/top";
+import RangeSizeMachine from "../../components/home/top/rangeSizeMachine";
+import { ButtonAdd, ContainerSearchbarHome, FilterIconSearchbarHome, InputRangeMachineSizeControll, InputSearchbarHome, SearchIconSearchbarHome } from "../../components/home/top/style";
+import LoadingPage from '../../components/loading-page/loading';
+import { listWorkstationsBegin } from "../../services/workstations";
+import { MachinesContainerHome } from "../../styles/style-home";
+import { Theme } from "../../theme/theme";
+import { useWindowSize } from "../../utils/useWindowSize";
+import { ModalAddMachine } from "./modal";
 
 interface MachineI {
     approved: number,
@@ -32,12 +33,31 @@ interface MachineI {
     suppression_data: string, //
 }
 
+const fakeMachine: MachineI = {
+    approved: 4200,
+    arrayOfData: ['100', '120', '80', '100'], //
+    discount_rework: false,
+    discount_scrap: false,
+    fast_socket_id: '175454', //
+    id: 'A483112aMvwrA540',
+    name: 'Maquina Teste',
+    oee: 75,
+    production_per_hour: 100,
+    rework: 10,
+    scrap: 2,
+    shifts: [{ hour_begin: '08:00', hour_end: '15:00' }],
+    status: 'Fora do turno',
+    status_code: '01',
+    suppression_data: '00:00',
+}
+
 export default function Home() {
 
     const size = useWindowSize();
     const [machineSize, setMachineSize] = useState(1);
-    const [dataWorkstations, setDataWorkstations] = useState<MachineI[]>();
+    const [dataWorkstations, setDataWorkstations] = useState<MachineI[]>([fakeMachine]);
     const [loading, setLoading] = useState(true);
+
 
 
     const getListWorkstations = useCallback(async () => {
@@ -76,7 +96,7 @@ export default function Home() {
 
                 (
                     <>
-
+                        <ModalAddMachine />
                         <TopHome size={(v) => setMachineSize(v)} />
 
                         {machineSize === 1 &&
